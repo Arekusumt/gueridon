@@ -43,6 +43,21 @@ test("analyzer demo flow end to end", async ({ page }) => {
   await page.screenshot({ path: "test-results/carta-real.png" });
 });
 
+test("dropzone is evident and info dots explain", async ({ page }) => {
+  await page.goto(`${BASE}/en/analyze`);
+  await expect(
+    page.getByRole("button", { name: "Add photos or a PDF of your menu" }),
+  ).toBeVisible();
+
+  await page.goto(`${BASE}/en`);
+  const dot = page.locator(".info-dot").first();
+  await dot.scrollIntoViewIfNeeded();
+  await dot.click();
+  await expect(page.locator(".info-pop").first()).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.locator(".info-pop")).toHaveCount(0);
+});
+
 test("mobile 360px: no horizontal overflow", async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 740 });
   await page.goto(`${BASE}/en`);

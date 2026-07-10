@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { InfoDot } from "@/components/InfoDot";
 import type { Locale } from "@/lib/i18n";
 
 const T = {
@@ -8,7 +9,11 @@ const T = {
     title: "Classify a dish",
     hint: "Category of 8 dishes → popularity cutoff is 70% of an equal share (8.75%). Margin cutoff here: €7.00.",
     popularity: "Popularity share",
+    popularityInfo:
+      "Of every 100 orders in this dish's section, how many are THIS dish. The cutoff here (8.75%) is 70% of an equal share among 8 dishes — clear it and the dish counts as popular.",
     margin: "Contribution margin",
+    marginInfo:
+      "What one serving leaves behind: menu price minus ingredient cost, in euros — never a percentage. Above the section's average (€7.00 here) counts as profitable.",
     verdicts: {
       star: ["Star", "Protect it. Feature it. Never discount it."],
       plowhorse: ["Plowhorse", "Loved but thin. Engineer the cost or nudge the price — quietly."],
@@ -20,7 +25,11 @@ const T = {
     title: "Clasifica un plato",
     hint: "Categoría de 8 platos → el corte de popularidad es el 70% de la cuota equitativa (8,75%). Corte de margen aquí: 7,00 €.",
     popularity: "Cuota de popularidad",
+    popularityInfo:
+      "De cada 100 comandas de su sección, cuántas son ESTE plato. El corte aquí (8,75%) es el 70% de la cuota equitativa entre 8 platos — si lo supera, el plato cuenta como popular.",
     margin: "Margen de contribución",
+    marginInfo:
+      "Lo que deja una ración: precio de carta menos coste de ingredientes, en euros — nunca un porcentaje. Por encima de la media de su sección (7,00 € aquí) cuenta como rentable.",
     verdicts: {
       star: ["Estrella", "Protégelo. Destácalo. No lo rebajes jamás."],
       plowhorse: ["Caballo de tiro", "Querido pero justo de margen. Ingeniería de coste o subida discreta."],
@@ -64,6 +73,7 @@ export function MatrixWidget({ locale }: { locale: Locale }) {
           <label className="block">
             <span className="font-mono text-xs uppercase tracking-widest text-ink-soft">
               {t.popularity} · <span className="lining">{pop.toFixed(1)}%</span>
+              <InfoDot label={t.popularity} text={t.popularityInfo} />
             </span>
             <input
               type="range"
@@ -78,6 +88,7 @@ export function MatrixWidget({ locale }: { locale: Locale }) {
           <label className="block">
             <span className="font-mono text-xs uppercase tracking-widest text-ink-soft">
               {t.margin} · <span className="lining">€{cm.toFixed(2)}</span>
+              <InfoDot label={t.margin} text={t.marginInfo} />
             </span>
             <input
               type="range"

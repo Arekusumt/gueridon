@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { InfoDot } from "@/components/InfoDot";
 import { MenuLine } from "@/components/MenuLine";
 import { UI, type Locale } from "@/lib/i18n";
 import type { AnalysisResult } from "@/lib/pipeline/types";
@@ -56,8 +57,13 @@ export function Dashboard({
           <p className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-ink-soft mt-2">
             {result.items.length} items · {t.modeLabels[result.meta.mode]} ·{" "}
             {result.meta.dataQuality !== "actual" ? t.estimated : "real data"}
+            <InfoDot label={t.score} text={t.info.score} />
           </p>
           <div className="mt-4 space-y-1.5 max-w-sm text-sm">
+            <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ink-soft">
+              {t.subscoresLabel}
+              <InfoDot label={t.subscoresLabel} text={t.info.subscores} />
+            </p>
             {(Object.keys(t.subscores) as Array<keyof typeof t.subscores>).map((k) => {
               const v = result.score.subscores[k];
               return (
@@ -101,7 +107,10 @@ export function Dashboard({
 
       {/* — The matrix — */}
       <section className="mt-14">
-        <h2 className="eyebrow text-gilt mb-2">{t.matrixTitle}</h2>
+        <h2 className="eyebrow text-gilt mb-2">
+          {t.matrixTitle}
+          <InfoDot label={t.matrixTitle} text={t.info.matrixPlot} />
+        </h2>
         <p className="text-sm text-ink-soft mb-6 max-w-lg">{t.matrixHint}</p>
         <MatrixPlot locale={locale} matrix={result.matrix} />
         {result.meta.dataQuality !== "actual" ? (
@@ -122,7 +131,10 @@ export function Dashboard({
                   <th className="py-2 pr-4 font-normal">{t.pricingCols.item}</th>
                   <th className="py-2 pr-4 font-normal text-right">{t.pricingCols.current}</th>
                   <th className="py-2 pr-4 font-normal text-right">{t.pricingCols.suggested}</th>
-                  <th className="py-2 font-normal">{t.pricingCols.why}</th>
+                  <th className="py-2 font-normal">
+                    {t.pricingCols.why}
+                    <InfoDot label={t.pricingCols.why} text={t.info.whyChips} />
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -261,7 +273,20 @@ export function Dashboard({
         <RedesignCarta locale={locale} result={result} />
       </section>
 
-      <p className="text-xs text-ink-soft mt-16 max-w-lg">{t.disclaimer}</p>
+      {/* Lead magnet: the honest bridge to the studio that built this. */}
+      <aside className="mt-16 border-t border-gilt/40 pt-8 flex flex-wrap items-baseline gap-x-3 gap-y-2">
+        <p className="italic text-lg text-ink">{t.leadMagnet.text}</p>
+        <a
+          href="https://gradiangrowth.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-mono text-xs uppercase tracking-[0.2em] text-cover underline decoration-gilt hover:text-gilt transition-colors"
+        >
+          {t.leadMagnet.cta} →
+        </a>
+      </aside>
+
+      <p className="text-xs text-ink-soft mt-8 max-w-lg">{t.disclaimer}</p>
     </div>
   );
 }

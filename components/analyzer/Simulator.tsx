@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { DEFAULT_ELASTICITY, simulatePriceChange } from "@/lib/engine";
+import { InfoDot } from "@/components/InfoDot";
 import { MenuLine } from "@/components/MenuLine";
 import { UI, type Locale } from "@/lib/i18n";
 import type { AnalysisResult } from "@/lib/pipeline/types";
@@ -57,6 +58,7 @@ export function Simulator({ locale, result }: { locale: Locale; result: Analysis
         <label className="block">
           <span className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-ink-soft">
             {t.simElasticity} · <span className="lining">{elasticity.toFixed(2)}</span>
+            <InfoDot label={t.simElasticity} text={t.info.elasticity} />
           </span>
           <input
             type="range"
@@ -73,6 +75,7 @@ export function Simulator({ locale, result }: { locale: Locale; result: Analysis
         <span className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-ink-soft">
           {t.simNewPrice} · <span className="lining">€{p1.toFixed(2)}</span>
           <span className="text-ink-soft/70"> (€{item.price.toFixed(2)})</span>
+          <InfoDot label={t.simNewPrice} text={t.info.newPrice} />
         </span>
         <input
           type="range"

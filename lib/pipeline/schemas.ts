@@ -80,8 +80,8 @@ export const AnalyzeRequestSchema = z.object({
   images: z
     .array(
       z.object({
-        data: z.string().max(5_500_000), // ~4 MB binary per photo
-        mediaType: z.enum(["image/jpeg", "image/png", "image/webp"]),
+        data: z.string().max(5_500_000), // ~4 MB binary per file
+        mediaType: z.enum(["image/jpeg", "image/png", "image/webp", "application/pdf"]),
       }),
     )
     .max(4)

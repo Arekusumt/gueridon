@@ -3,11 +3,14 @@
 import { useState } from "react";
 import { awkwardLeftDigit, snapToPsychological } from "@/lib/engine";
 import type { Positioning } from "@/lib/engine";
+import { InfoDot } from "@/components/InfoDot";
 import type { Locale } from "@/lib/i18n";
 
 const T = {
   en: {
     title: "Snap a price to its psychology",
+    positioningInfo:
+      "How your house wants to be read. Value: charm endings (.95/.90) keep the first digit low — the digit people actually read. Mid: .50/.95. Premium: whole and half euros — round numbers feel confident in pleasure purchases, per Wadhwa & Zhang (2015).",
     positioning: { value: "Value", mid: "Mid", premium: "Premium" },
     raw: "Raw price",
     snapped: "On the grid",
@@ -17,6 +20,8 @@ const T = {
   },
   es: {
     title: "Ajusta un precio a su psicología",
+    positioningInfo:
+      "Cómo quiere leerse tu casa. Económico: terminaciones charm (,95/,90) mantienen bajo el primer dígito — el que la gente lee de verdad. Medio: ,50/,95. Premium: euros enteros y medios — los números redondos transmiten seguridad en compras de placer, según Wadhwa & Zhang (2015).",
     positioning: { value: "Económico", mid: "Medio", premium: "Premium" },
     raw: "Precio bruto",
     snapped: "En la parrilla",
@@ -36,7 +41,10 @@ export function EndingsWidget({ locale }: { locale: Locale }) {
 
   return (
     <figure className="border border-ink/20 bg-paper-deep/60 p-6 sm:p-8 my-10">
-      <figcaption className="eyebrow text-ink-soft mb-5">{t.title}</figcaption>
+      <figcaption className="eyebrow text-ink-soft mb-5">
+        {t.title}
+        <InfoDot label={t.title} text={t.positioningInfo} />
+      </figcaption>
       <div
         className="flex gap-1 font-mono text-xs uppercase tracking-widest mb-6"
         role="radiogroup"

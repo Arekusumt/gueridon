@@ -44,8 +44,11 @@ export interface AnalyzeInput {
   profile: RestaurantProfile;
   /** Raw menu text (pasted). Either this or images must be present. */
   menuText?: string;
-  /** Menu photos as base64 data (no data: prefix) + media type. */
-  images?: Array<{ data: string; mediaType: "image/jpeg" | "image/png" | "image/webp" }>;
+  /** Menu photos or PDFs as base64 data (no data: prefix) + media type. */
+  images?: Array<{
+    data: string;
+    mediaType: "image/jpeg" | "image/png" | "image/webp" | "application/pdf";
+  }>;
   /** Competitor menus, pasted as raw text blocks. */
   competitorTexts?: string[];
   /** Optional per-item sales/cost the user typed in after parsing. */

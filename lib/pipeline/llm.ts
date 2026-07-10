@@ -30,7 +30,7 @@ const MAX_TOKENS: Record<LlmRole, number> = {
 
 export interface LlmImage {
   data: string;
-  mediaType: "image/jpeg" | "image/png" | "image/webp";
+  mediaType: "image/jpeg" | "image/png" | "image/webp" | "application/pdf";
 }
 
 export interface LlmRequest {
@@ -51,11 +51,16 @@ export function anthropicBackend(apiKey: string): LlmBackend {
     name: "anthropic",
     async complete(req) {
       const content: Anthropic.ContentBlockParam[] = [
-        ...(req.images ?? []).map(
-          (img): Anthropic.ImageBlockParam => ({
-            type: "image",
-            source: { type: "base64", media_type: img.mediaType, data: img.data },
-          }),
+        ...(req.images ?? []).map((img): Anthropic.ContentBlockParam =>
+          img.mediaType === "application/pdf"
+            ? {
+                type: "document",
+                source: { type: "base64", media_type: "application/pdf", data: img.data },
+              }
+            : {
+                type: "image",
+                source: { type: "base64", media_type: img.mediaType, data: img.data },
+              },
         ),
         { type: "text", text: req.prompt },
       ];

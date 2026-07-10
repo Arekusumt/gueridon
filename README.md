@@ -98,6 +98,18 @@ IBM Plex Mono; the dot-leader is the house signature.
 - The what-if simulator is a constant-elasticity scenario tool, not a forecast.
 - Nothing here is legal or financial advice.
 
+## The Gradian ecosystem
+
+Gueridon doubles as the **menu-audit lead magnet** of [Gradian](https://gradiangrowth.com),
+a digital-growth studio for local businesses. Sibling public projects:
+
+- [gradian-sistema](https://github.com/Arekusumt/gradian-sistema) — the agentic system map
+  behind the studio (28 agents, 89 nodes).
+- [gradian-caso-waterfront](https://github.com/Arekusumt/gradian-caso-waterfront) — the
+  public case study of the pub whose real menus power this demo.
+- [gradian-match](https://github.com/Arekusumt/gradian-match) — agentic CV/job-matching
+  tool with a live pipeline view, Gueridon's methodological sibling.
+
 ---
 
 Built in one (long) night by [Alex](https://github.com/Arekusumt) with Claude Code, as

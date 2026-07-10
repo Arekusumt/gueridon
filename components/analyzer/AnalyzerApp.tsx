@@ -19,21 +19,21 @@ const STAGES: StageId[] = [
 
 type Phase = "form" | "running" | "done";
 
-async function filesToImages(files: FileList | null) {
-  if (!files) return [];
-  const out: Array<{ data: string; mediaType: "image/jpeg" | "image/png" | "image/webp" }> = [];
-  for (const file of Array.from(files).slice(0, 4)) {
-    if (!/^image\/(jpeg|png|webp)$/.test(file.type)) continue;
+type UploadMediaType = "image/jpeg" | "image/png" | "image/webp" | "application/pdf";
+
+const ACCEPTED_UPLOAD = /^(image\/(jpeg|png|webp)|application\/pdf)$/;
+
+async function filesToDocuments(files: File[]) {
+  const out: Array<{ data: string; mediaType: UploadMediaType }> = [];
+  for (const file of files.slice(0, 4)) {
+    if (!ACCEPTED_UPLOAD.test(file.type)) continue;
     const dataUrl = await new Promise<string>((res, rej) => {
       const r = new FileReader();
       r.onload = () => res(String(r.result));
       r.onerror = rej;
       r.readAsDataURL(file);
     });
-    out.push({
-      data: dataUrl.split(",")[1],
-      mediaType: file.type as "image/jpeg" | "image/png" | "image/webp",
-    });
+    out.push({ data: dataUrl.split(",")[1], mediaType: file.type as UploadMediaType });
   }
   return out;
 }
@@ -54,7 +54,15 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
   const [catalonia, setCatalonia] = useState(true);
   const [competitors, setCompetitors] = useState("");
   const [byoKey, setByoKey] = useState("");
+  const [files, setFiles] = useState<File[]>([]);
   const fileRef = useRef<HTMLInputElement>(null);
+
+  const addFiles = useCallback((incoming: FileList | File[] | null) => {
+    if (!incoming) return;
+    setFiles((prev) =>
+      [...prev, ...Array.from(incoming).filter((f) => ACCEPTED_UPLOAD.test(f.type))].slice(0, 4),
+    );
+  }, []);
 
   const errorText = useCallback(
     (code: string) => {
@@ -98,7 +106,7 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
     setEvents([]);
     setResult(null);
     try {
-      const images = await filesToImages(fileRef.current?.files ?? null);
+      const images = await filesToDocuments(files);
       const body = {
         profile: {
           name: name || "—",
@@ -154,9 +162,9 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
       setError(errorText(e instanceof Error ? e.message : "PIPELINE_ERROR"));
       setPhase("form");
     }
-  }, [byoKey, catalonia, competitors, cuisine, errorText, locale, location, menuText, name, positioning, zone]);
+  }, [byoKey, catalonia, competitors, cuisine, errorText, files, locale, location, menuText, name, positioning, zone]);
 
-  const canRun = menuText.trim().length > 0 || (fileRef.current?.files?.length ?? 0) > 0;
+  const canRun = menuText.trim().length > 0 || files.length > 0;
 
   if (phase === "done" && result) {
     return (
@@ -185,12 +193,66 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
           placeholder={"STARTERS\nPatatas Bravas\ncrispy potatoes, smoked aioli ... 6,50\n…"}
           className="w-full font-mono text-sm bg-paper-deep/40 border border-ink/25 p-4 focus:border-cover resize-y"
         />
-        <div className="mt-3 flex flex-wrap items-center gap-4">
-          <label className="font-mono text-xs text-ink-soft cursor-pointer hover:text-cover">
-            {t.photosLabel}:{" "}
-            <input ref={fileRef} type="file" accept="image/jpeg,image/png,image/webp" multiple className="text-xs" />
-          </label>
+        {/* The evident way in: a proper dropzone, not a shy file input. */}
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label={t.upload.title}
+          onClick={() => fileRef.current?.click()}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              fileRef.current?.click();
+            }
+          }}
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={(e) => {
+            e.preventDefault();
+            addFiles(e.dataTransfer.files);
+          }}
+          className="mt-4 border-2 border-dashed border-cover/45 bg-paper-deep/30 hover:border-cover hover:bg-paper-deep/60 focus-visible:border-cover transition-colors cursor-pointer px-6 py-7 text-center select-none"
+        >
+          <p className="display text-3xl text-cover leading-none" aria-hidden="true">
+            ⌲
+          </p>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-cover mt-3">
+            {t.upload.title}
+          </p>
+          <p className="text-xs text-ink-soft mt-1.5">{t.upload.hint}</p>
+          <input
+            ref={fileRef}
+            type="file"
+            accept="image/jpeg,image/png,image/webp,application/pdf"
+            multiple
+            className="sr-only"
+            onChange={(e) => {
+              addFiles(e.target.files);
+              e.target.value = "";
+            }}
+          />
         </div>
+        {files.length > 0 ? (
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            {files.map((f, i) => (
+              <span
+                key={`${f.name}-${i}`}
+                className="font-mono text-[0.62rem] uppercase tracking-wider border border-cover/40 bg-paper-deep/50 text-cover px-2 py-1"
+              >
+                {f.type === "application/pdf" ? "PDF" : "IMG"} · {f.name.slice(0, 28)}
+              </span>
+            ))}
+            <span className="font-mono text-[0.62rem] text-ink-soft">
+              {files.length} {t.upload.selected}
+            </span>
+            <button
+              type="button"
+              onClick={() => setFiles([])}
+              className="font-mono text-[0.62rem] uppercase tracking-wider text-claret hover:underline"
+            >
+              × {t.upload.clear}
+            </button>
+          </div>
+        ) : null}
         <div className="mt-6 border-t border-ink/15 pt-5">
           <button
             onClick={runDemo}
