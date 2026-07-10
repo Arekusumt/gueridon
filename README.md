@@ -1,5 +1,11 @@
 # Gueridon — the science of the menu, served properly
 
+[![CI](https://github.com/Arekusumt/gueridon/actions/workflows/ci.yml/badge.svg)](https://github.com/Arekusumt/gueridon/actions/workflows/ci.yml)
+[![Tests](https://img.shields.io/badge/tests-38%20passing-2ea44f)](tests)
+[![Lighthouse](https://img.shields.io/badge/lighthouse%20(mobile%2C%20prod)-89%20%C2%B7%20100%20%C2%B7%20100%20%C2%B7%20100-5c62d6)](lighthouse-prod.json)
+[![Live demo](https://img.shields.io/badge/live-gueridon.vercel.app-0a7ea4)](https://gueridon.vercel.app)
+[![License](https://img.shields.io/badge/license-source--available-lightgrey)](LICENSE)
+
 **Live:** https://gueridon.vercel.app · EN/ES
 
 A long-form, luxury-typography explainer of **menu engineering** — every claim backed by
@@ -51,6 +57,10 @@ deterministic, unit-tested engine; the LLM only does what math can't.**
   parser, estimates come from documented priors (always labelled *estimated*), and the
   report is templated from engine numbers.
 
+Stage-by-stage internals (trust boundary, fallbacks, model routing, SSE events) are in
+[`docs/pipeline.md`](docs/pipeline.md); the reasoning behind the name, the architecture
+and the API posture is logged in [`docs/decisions.md`](docs/decisions.md).
+
 ## Modes
 
 | Mode | When | Cost |
@@ -75,7 +85,7 @@ rather than a paper (Omnes), it is labelled as such. The full bibliography rende
 npm install
 npm run dev        # http://localhost:3000/en
 
-npm test           # vitest — engine + pipeline (36 tests)
+npm test           # vitest — engine + pipeline (38 tests)
 npm run e2e        # Playwright smoke: demo flow, i18n, mobile, paint checks
 ```
 
@@ -104,7 +114,7 @@ Gueridon doubles as the **menu-audit lead magnet** of [Gradian](https://gradiang
 a digital-growth studio for local businesses. Sibling public projects:
 
 - [gradian-sistema](https://github.com/Arekusumt/gradian-sistema) — the agentic system map
-  behind the studio (28 agents, 89 nodes).
+  behind the studio (28 agents, 90 nodes).
 - [gradian-caso-waterfront](https://github.com/Arekusumt/gradian-caso-waterfront) — the
   public case study of the pub whose real menus power this demo.
 - [gradian-match](https://github.com/Arekusumt/gradian-match) — agentic CV/job-matching
