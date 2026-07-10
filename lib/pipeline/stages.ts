@@ -243,17 +243,43 @@ export async function estimateStage(
 
 // ---------------------------------------------------------- competitors ----
 
-export function competitorStage(
+export async function competitorStage(
   items: MenuItem[],
   input: AnalyzeInput,
-): { benchmarks: Map<string, MarketBenchmark>; competitorItems: number } {
+  backend: LlmBackend,
+): Promise<{
+  benchmarks: Map<string, MarketBenchmark>;
+  competitorItems: number;
+  filesNeedLive: boolean;
+}> {
   const zone = input.profile.marketZone ? zoneBenchmarks(input.profile.marketZone) : new Map<string, MarketBenchmark>();
 
-  // Competitor menus the user pasted beat the generic zone dataset.
+  // Competitor menus the user provided beat the generic zone dataset.
+  const competitorParses = (input.competitorTexts ?? []).map((text) => textParse(text).items);
+  let filesNeedLive = false;
+  if (input.competitorImages && input.competitorImages.length > 0) {
+    if (backend.name !== "anthropic") {
+      // Competitor files are optional enrichment: degrade by skipping, never fail the run.
+      filesNeedLive = true;
+    } else {
+      try {
+        const reply = await backend.complete({
+          role: "parser",
+          system: PARSER_SYSTEM,
+          prompt: "Digitise these competitor menu photos/PDFs into the JSON format.",
+          images: input.competitorImages,
+        });
+        competitorParses.push(ParsedMenuSchema.parse(extractJson(reply)).items);
+      } catch {
+        // Unreadable competitor files don't sink the analysis — carry on without them.
+      }
+    }
+  }
+
   const prices = new Map<string, number[]>();
   let competitorItems = 0;
-  for (const text of input.competitorTexts ?? []) {
-    for (const p of textParse(text).items) {
+  for (const parsedItems of competitorParses) {
+    for (const p of parsedItems) {
       if (p.price == null) continue;
       const key = marketKeyFor(p);
       if (!key) continue;
@@ -284,7 +310,7 @@ export function competitorStage(
     const bench = merged.get(key);
     if (bench) perItem.set(it.id, bench);
   }
-  return { benchmarks: perItem, competitorItems };
+  return { benchmarks: perItem, competitorItems, filesNeedLive };
 }
 
 // --------------------------------------------------------------- doctor ----

@@ -51,6 +51,11 @@ export interface AnalyzeInput {
   }>;
   /** Competitor menus, pasted as raw text blocks. */
   competitorTexts?: string[];
+  /** Competitor menus as photos or PDFs — read by the LLM in live mode; skipped otherwise. */
+  competitorImages?: Array<{
+    data: string;
+    mediaType: "image/jpeg" | "image/png" | "image/webp" | "application/pdf";
+  }>;
   /** Optional per-item sales/cost the user typed in after parsing. */
   knownCosts?: Record<string, number>;
   knownSales?: Record<string, number>;

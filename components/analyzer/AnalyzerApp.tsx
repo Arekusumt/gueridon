@@ -22,6 +22,8 @@ type Phase = "form" | "running" | "done";
 type UploadMediaType = "image/jpeg" | "image/png" | "image/webp" | "application/pdf";
 
 const ACCEPTED_UPLOAD = /^(image\/(jpeg|png|webp)|application\/pdf)$/;
+const TEXT_FILE = /\.(txt|md|csv)$/i;
+const FILE_INPUT_ACCEPT = "image/jpeg,image/png,image/webp,application/pdf,.txt,.md,.csv,text/plain";
 
 async function filesToDocuments(files: File[]) {
   const out: Array<{ data: string; mediaType: UploadMediaType }> = [];
@@ -36,6 +38,17 @@ async function filesToDocuments(files: File[]) {
     out.push({ data: dataUrl.split(",")[1], mediaType: file.type as UploadMediaType });
   }
   return out;
+}
+
+/** Photos/PDFs go to the model as documents; text files can be read right here. */
+function splitFiles(incoming: FileList | File[] | null) {
+  const arr = incoming ? Array.from(incoming) : [];
+  return {
+    media: arr.filter((f) => ACCEPTED_UPLOAD.test(f.type)),
+    texts: arr.filter(
+      (f) => !ACCEPTED_UPLOAD.test(f.type) && (f.type.startsWith("text/") || TEXT_FILE.test(f.name)),
+    ),
+  };
 }
 
 export function AnalyzerApp({ locale }: { locale: Locale }) {
@@ -55,13 +68,24 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
   const [competitors, setCompetitors] = useState("");
   const [byoKey, setByoKey] = useState("");
   const [files, setFiles] = useState<File[]>([]);
-  const fileRef = useRef<HTMLInputElement>(null);
+  const [compFiles, setCompFiles] = useState<File[]>([]);
 
-  const addFiles = useCallback((incoming: FileList | File[] | null) => {
-    if (!incoming) return;
-    setFiles((prev) =>
-      [...prev, ...Array.from(incoming).filter((f) => ACCEPTED_UPLOAD.test(f.type))].slice(0, 4),
-    );
+  const addMenuFiles = useCallback(async (incoming: FileList | File[] | null) => {
+    const { media, texts } = splitFiles(incoming);
+    if (media.length) setFiles((prev) => [...prev, ...media].slice(0, 4));
+    for (const f of texts) {
+      const text = (await f.text()).trim();
+      if (text) setMenuText((prev) => (prev.trim() ? `${prev.trimEnd()}\n\n${text}` : text));
+    }
+  }, []);
+
+  const addCompFiles = useCallback(async (incoming: FileList | File[] | null) => {
+    const { media, texts } = splitFiles(incoming);
+    if (media.length) setCompFiles((prev) => [...prev, ...media].slice(0, 4));
+    for (const f of texts) {
+      const text = (await f.text()).trim();
+      if (text) setCompetitors((prev) => (prev.trim() ? `${prev.trimEnd()}\n---\n${text}` : text));
+    }
   }, []);
 
   const errorText = useCallback(
@@ -107,6 +131,7 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
     setResult(null);
     try {
       const images = await filesToDocuments(files);
+      const compImages = await filesToDocuments(compFiles);
       const body = {
         profile: {
           name: name || "—",
@@ -122,6 +147,7 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
         competitorTexts: competitors.trim()
           ? competitors.split(/^---+$/m).map((s) => s.trim()).filter(Boolean).slice(0, 5)
           : undefined,
+        competitorImages: compImages.length ? compImages : undefined,
       };
       const res = await fetch("/api/analyze", {
         method: "POST",
@@ -162,7 +188,7 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
       setError(errorText(e instanceof Error ? e.message : "PIPELINE_ERROR"));
       setPhase("form");
     }
-  }, [byoKey, catalonia, competitors, cuisine, errorText, files, locale, location, menuText, name, positioning, zone]);
+  }, [byoKey, catalonia, compFiles, competitors, cuisine, errorText, files, locale, location, menuText, name, positioning, zone]);
 
   const canRun = menuText.trim().length > 0 || files.length > 0;
 
@@ -194,65 +220,15 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
           className="w-full font-mono text-sm bg-paper-deep/40 border border-ink/25 p-4 focus:border-cover resize-y"
         />
         {/* The evident way in: a proper dropzone, not a shy file input. */}
-        <div
-          role="button"
-          tabIndex={0}
-          aria-label={t.upload.title}
-          onClick={() => fileRef.current?.click()}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              fileRef.current?.click();
-            }
-          }}
-          onDragOver={(e) => e.preventDefault()}
-          onDrop={(e) => {
-            e.preventDefault();
-            addFiles(e.dataTransfer.files);
-          }}
-          className="mt-4 border-2 border-dashed border-cover/45 bg-paper-deep/30 hover:border-cover hover:bg-paper-deep/60 focus-visible:border-cover transition-colors cursor-pointer px-6 py-7 text-center select-none"
-        >
-          <p className="display text-3xl text-cover leading-none" aria-hidden="true">
-            ⌲
-          </p>
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-cover mt-3">
-            {t.upload.title}
-          </p>
-          <p className="text-xs text-ink-soft mt-1.5">{t.upload.hint}</p>
-          <input
-            ref={fileRef}
-            type="file"
-            accept="image/jpeg,image/png,image/webp,application/pdf"
-            multiple
-            className="sr-only"
-            onChange={(e) => {
-              addFiles(e.target.files);
-              e.target.value = "";
-            }}
-          />
-        </div>
-        {files.length > 0 ? (
-          <div className="mt-3 flex flex-wrap items-center gap-2">
-            {files.map((f, i) => (
-              <span
-                key={`${f.name}-${i}`}
-                className="font-mono text-[0.62rem] uppercase tracking-wider border border-cover/40 bg-paper-deep/50 text-cover px-2 py-1"
-              >
-                {f.type === "application/pdf" ? "PDF" : "IMG"} · {f.name.slice(0, 28)}
-              </span>
-            ))}
-            <span className="font-mono text-[0.62rem] text-ink-soft">
-              {files.length} {t.upload.selected}
-            </span>
-            <button
-              type="button"
-              onClick={() => setFiles([])}
-              className="font-mono text-[0.62rem] uppercase tracking-wider text-claret hover:underline"
-            >
-              × {t.upload.clear}
-            </button>
-          </div>
-        ) : null}
+        <Dropzone
+          title={t.upload.title}
+          hint={t.upload.hint}
+          selectedLabel={t.upload.selected}
+          clearLabel={t.upload.clear}
+          files={files}
+          onAdd={addMenuFiles}
+          onClear={() => setFiles([])}
+        />
         <div className="mt-6 border-t border-ink/15 pt-5">
           <button
             onClick={runDemo}
@@ -317,6 +293,16 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
             />
             <span className="text-xs text-ink-soft">{t.competitorsHint}</span>
           </label>
+          <Dropzone
+            compact
+            title={t.uploadComp.title}
+            hint={t.uploadComp.hint}
+            selectedLabel={t.upload.selected}
+            clearLabel={t.upload.clear}
+            files={compFiles}
+            onAdd={addCompFiles}
+            onClear={() => setCompFiles([])}
+          />
         </div>
         <div className="border-t border-ink/15 pt-5">
           <label className="block mb-4">
@@ -342,6 +328,91 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
         </div>
       </section>
     </div>
+  );
+}
+
+function Dropzone({
+  title,
+  hint,
+  selectedLabel,
+  clearLabel,
+  files,
+  onAdd,
+  onClear,
+  compact = false,
+}: {
+  title: string;
+  hint: string;
+  selectedLabel: string;
+  clearLabel: string;
+  files: File[];
+  onAdd: (incoming: FileList | File[] | null) => void;
+  onClear: () => void;
+  compact?: boolean;
+}) {
+  const ref = useRef<HTMLInputElement>(null);
+  return (
+    <>
+      <div
+        role="button"
+        tabIndex={0}
+        aria-label={title}
+        onClick={() => ref.current?.click()}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            ref.current?.click();
+          }
+        }}
+        onDragOver={(e) => e.preventDefault()}
+        onDrop={(e) => {
+          e.preventDefault();
+          onAdd(e.dataTransfer.files);
+        }}
+        className={`mt-4 border-2 border-dashed border-cover/45 bg-paper-deep/30 hover:border-cover hover:bg-paper-deep/60 focus-visible:border-cover transition-colors cursor-pointer text-center select-none ${compact ? "px-4 py-4" : "px-6 py-7"}`}
+      >
+        <p className={`display text-cover leading-none ${compact ? "text-xl" : "text-3xl"}`} aria-hidden="true">
+          ⌲
+        </p>
+        <p className={`font-mono text-xs uppercase tracking-[0.2em] text-cover ${compact ? "mt-2" : "mt-3"}`}>
+          {title}
+        </p>
+        <p className="text-xs text-ink-soft mt-1.5">{hint}</p>
+        <input
+          ref={ref}
+          type="file"
+          accept={FILE_INPUT_ACCEPT}
+          multiple
+          className="sr-only"
+          onChange={(e) => {
+            onAdd(e.target.files);
+            e.target.value = "";
+          }}
+        />
+      </div>
+      {files.length > 0 ? (
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          {files.map((f, i) => (
+            <span
+              key={`${f.name}-${i}`}
+              className="font-mono text-[0.62rem] uppercase tracking-wider border border-cover/40 bg-paper-deep/50 text-cover px-2 py-1"
+            >
+              {f.type === "application/pdf" ? "PDF" : "IMG"} · {f.name.slice(0, 28)}
+            </span>
+          ))}
+          <span className="font-mono text-[0.62rem] text-ink-soft">
+            {files.length} {selectedLabel}
+          </span>
+          <button
+            type="button"
+            onClick={onClear}
+            className="font-mono text-[0.62rem] uppercase tracking-wider text-claret hover:underline"
+          >
+            × {clearLabel}
+          </button>
+        </div>
+      ) : null}
+    </>
   );
 }
 

@@ -115,10 +115,14 @@ export const UI = {
       moreHeld: "more items hold their price",
       estCostNote: "Costs and popularity marked “estimated” come from documented priors, not your books. Add real numbers for a sharper matrix.",
       upload: {
-        title: "Add photos or a PDF of your menu",
-        hint: "Drag them here, or click to browse · up to 4 files · JPG, PNG, WebP or PDF",
+        title: "Add photos, a PDF or a text file of your menu",
+        hint: "Drag them here, or click to browse · up to 4 files · JPG, PNG, WebP, PDF — text files land in the box above",
         selected: "ready to read",
         clear: "clear",
+      },
+      uploadComp: {
+        title: "Add competitor menus — photos, PDFs or text files",
+        hint: "Up to 4 files · photos/PDFs are read in live mode · text files land in the box above",
       },
       info: {
         score: "One number, 0–100, blending five checks: matrix health (30%), price architecture (20%), pricing psychology (20%), legal compliance (15%) and copy quality (15%). It grades the MENU as a sales tool — not the cooking.",
@@ -247,10 +251,14 @@ export const UI = {
       moreHeld: "platos más mantienen su precio",
       estCostNote: "Los costes y popularidades marcados como “estimados” salen de priors documentados, no de tus libros. Con datos reales, la matriz afina.",
       upload: {
-        title: "Añade fotos o un PDF de tu carta",
-        hint: "Arrástralos aquí o haz clic para buscar · hasta 4 archivos · JPG, PNG, WebP o PDF",
+        title: "Añade fotos, un PDF o un archivo de texto de tu carta",
+        hint: "Arrástralos aquí o haz clic para buscar · hasta 4 archivos · JPG, PNG, WebP, PDF — los de texto caen en el cuadro de arriba",
         selected: "listos para leer",
         clear: "quitar",
+      },
+      uploadComp: {
+        title: "Añade cartas de la competencia — fotos, PDF o texto",
+        hint: "Hasta 4 archivos · fotos/PDF se leen en modo live · los de texto caen en el cuadro de arriba",
       },
       info: {
         score: "Un número, 0–100, que mezcla cinco chequeos: salud de la matriz (30%), arquitectura de precios (20%), psicología de precios (20%), compliance legal (15%) y calidad del copy (15%). Puntúa la CARTA como herramienta de venta — no la cocina.",

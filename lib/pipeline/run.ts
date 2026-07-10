@@ -56,12 +56,12 @@ export async function* runPipeline(
   };
 
   yield { stage: "competitors", status: "start" };
-  const comp = await timed(() => competitorStage(est.value, input));
+  const comp = await timed(() => competitorStage(est.value, input, backend));
   yield {
     stage: "competitors",
     status: "done",
     ms: comp.ms,
-    detail: `${comp.value.benchmarks.size} items benchmarked${comp.value.competitorItems ? ` (+${comp.value.competitorItems} competitor prices)` : ""}`,
+    detail: `${comp.value.benchmarks.size} items benchmarked${comp.value.competitorItems ? ` (+${comp.value.competitorItems} competitor prices)` : ""}${comp.value.filesNeedLive ? " — competitor files need live mode, skipped" : ""}`,
   };
 
   yield { stage: "pricing", status: "start" };

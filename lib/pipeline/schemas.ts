@@ -60,6 +60,11 @@ export const ReportSchema = z.object({
   quickWins: z.array(z.string().max(200)).min(3).max(7),
 });
 
+const UploadedFileSchema = z.object({
+  data: z.string().max(5_500_000), // ~4 MB binary per file
+  mediaType: z.enum(["image/jpeg", "image/png", "image/webp", "application/pdf"]),
+});
+
 /** What the browser is allowed to send us. Sizes are hard trust-boundary caps. */
 export const AnalyzeRequestSchema = z.object({
   profile: z.object({
@@ -77,16 +82,9 @@ export const AnalyzeRequestSchema = z.object({
     locale: z.enum(["en", "es"]),
   }),
   menuText: z.string().max(30_000).optional(),
-  images: z
-    .array(
-      z.object({
-        data: z.string().max(5_500_000), // ~4 MB binary per file
-        mediaType: z.enum(["image/jpeg", "image/png", "image/webp", "application/pdf"]),
-      }),
-    )
-    .max(4)
-    .optional(),
+  images: z.array(UploadedFileSchema).max(4).optional(),
   competitorTexts: z.array(z.string().max(20_000)).max(5).optional(),
+  competitorImages: z.array(UploadedFileSchema).max(4).optional(),
   knownCosts: z.record(z.string(), z.number().positive().max(10_000)).optional(),
   knownSales: z.record(z.string(), z.number().min(0).max(1_000_000)).optional(),
 });

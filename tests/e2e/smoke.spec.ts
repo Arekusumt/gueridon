@@ -46,7 +46,10 @@ test("analyzer demo flow end to end", async ({ page }) => {
 test("dropzone is evident and info dots explain", async ({ page }) => {
   await page.goto(`${BASE}/en/analyze`);
   await expect(
-    page.getByRole("button", { name: "Add photos or a PDF of your menu" }),
+    page.getByRole("button", { name: "Add photos, a PDF or a text file of your menu" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Add competitor menus — photos, PDFs or text files" }),
   ).toBeVisible();
 
   await page.goto(`${BASE}/en`);

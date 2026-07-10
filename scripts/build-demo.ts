@@ -67,7 +67,7 @@ async function build(locale: "en" | "es") {
   const input: AnalyzeInput = { profile, menuText: "" };
 
   const estimated = await estimateStage(items, fixture);
-  const comp = competitorStage(estimated, input);
+  const comp = await competitorStage(estimated, input, fixture);
   // Allergen declaration is NOT assessable from the photographed cartas (they
   // are partial crops), so the demo neutralises this check rather than publish
   // an unverifiable claim about a real venue. Real analyses assess it normally.

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { fixtureBackend } from "@/lib/pipeline/llm";
+import { fixtureBackend, type LlmBackend } from "@/lib/pipeline/llm";
 import { checkRateLimit } from "@/lib/pipeline/ratelimit";
 import { runPipeline } from "@/lib/pipeline/run";
 import { textParse } from "@/lib/pipeline/stages";
@@ -104,6 +104,58 @@ describe("runPipeline (fixture mode, end to end)", () => {
       let n = await gen.next();
       while (!n.done) n = await gen.next();
     }).rejects.toThrow("PHOTO_NEEDS_LIVE");
+  });
+
+  it("skips competitor files without a live backend instead of failing", async () => {
+    const events: PipelineEvent[] = [];
+    const gen = runPipeline(
+      { ...INPUT, competitorImages: [{ data: "x", mediaType: "application/pdf" }] },
+      fixture,
+    );
+    let n = await gen.next();
+    while (!n.done) {
+      events.push(n.value);
+      n = await gen.next();
+    }
+    expect(n.value.score.total).toBeGreaterThanOrEqual(0);
+    const comp = events.find((e) => e.stage === "competitors" && e.status === "done")!;
+    expect(comp.detail).toMatch(/need live mode/);
+  });
+
+  it("reads competitor files through the parser in live mode", async () => {
+    // Fake live backend: canned parser reply; every other role falls back deterministically.
+    const fakeLive: LlmBackend = {
+      name: "anthropic",
+      async complete(req) {
+        if (req.role !== "parser") throw new Error("deterministic fallback expected");
+        return JSON.stringify({
+          items: [
+            { name: "Cheese Burger", category: "MAINS", description: null, price: 15 },
+            { name: "Bacon Burger", category: "MAINS", description: null, price: 14 },
+            { name: "Veggie Burger", category: "MAINS", description: null, price: 13 },
+          ],
+          allergenInfoPresent: false,
+          notes: [],
+        });
+      },
+    };
+    const events: PipelineEvent[] = [];
+    const gen = runPipeline(
+      { ...INPUT, competitorImages: [{ data: "x", mediaType: "application/pdf" }] },
+      fakeLive,
+    );
+    let n = await gen.next();
+    while (!n.done) {
+      events.push(n.value);
+      n = await gen.next();
+    }
+    const comp = events.find((e) => e.stage === "competitors" && e.status === "done")!;
+    expect(comp.detail).toMatch(/\+3 competitor prices/);
+    expect(comp.detail).not.toMatch(/need live mode/);
+    // Three burger prices from the files overrule the zone dataset for the burger.
+    const burger = n.value.benchmarks.find(([id]) => id.includes("burger"))!;
+    expect(burger[1].source).toMatch(/competitor menus provided by user/);
+    expect(burger[1].typical).toBe(14);
   });
 
   it("localises the report in Spanish", async () => {
