@@ -1,0 +1,36 @@
+{
+  "zone": "Reus",
+  "currency": "EUR",
+  "as_of": "2026-07",
+  "disclaimer": "Estimates aggregated from public sources; not a survey. For directional benchmarking only.",
+  "categories": [
+    {"item": "caña de cerveza (200-250ml)", "low": 1.8, "typical": 2.4, "high": 3.2, "source": "derivado de Numbeo Tarragona (ciudad vecina)", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Reus no tiene datos Numbeo propios: derivado de Tarragona ciudad (10 km) con ligero descuento por menor turismo. Estimación."},
+    {"item": "pinta / cerveza 0,5L de barril", "low": 2.4, "typical": 2.9, "high": 3.4, "source": "derivado de Numbeo Tarragona", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Derivado de media provincial Tarragona (3,00; 2,50-3,50). Estimación."},
+    {"item": "copa de vino", "low": 2.5, "typical": 3.5, "high": 5.5, "source": "Gestión de Restaurantes (análisis nacional)", "source_url": "https://gestionderestaurantes.es/cuanto-cuesta-realmente-una-copa-de-vino-en-un-bar/", "note": "Derivado de rango nacional de bar común (2-5). Reus tiene cultura de vermut/vino fuerte, oferta amplia mantiene precios contenidos. Estimación."},
+    {"item": "gin-tonic / cóctel", "low": 5.5, "typical": 7.5, "high": 10.0, "source": "derivado de rangos BCN/nacionales (Time Out)", "source_url": "https://www.timeout.es/barcelona/es/bars-pubs/copas-low-cost", "note": "Sin dato específico Reus: derivado con descuento de ciudad media interior. Estimación."},
+    {"item": "refresco (33cl)", "low": 1.8, "typical": 2.2, "high": 2.5, "source": "derivado de Numbeo Tarragona", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Derivado de Tarragona ciudad (media 2,20). Estimación."},
+    {"item": "café (con leche / cappuccino)", "low": 1.3, "typical": 1.7, "high": 2.5, "source": "Hosteltur (media España 1,47) + Numbeo Tarragona", "source_url": "https://www.hosteltur.com/comunidad/nota/018944_tomarse-un-cafe-cuesta-de-media-147-euros-en-los-bares-espanoles.html", "note": "Derivado: entre la media nacional de bar (1,47) y el cappuccino de Tarragona (2,32). Estimación."},
+    {"item": "menú del día", "low": 13.0, "typical": 16.0, "high": 25.0, "source": "The Objective (guía Reus) + El Racó de JP (carta publicada)", "source_url": "https://theobjective.com/lifestyle/2024-02-28/donde-comer-reus/", "note": "DATO DIRECTO de cartas publicadas: 15,90-17 EUR habitual (El Racó de JP 17 laborables/19 finde); gama alta 25-32. Por encima de la media catalana en locales de centro."},
+    {"item": "hamburguesa (completa, gourmet)", "low": 9.0, "typical": 12.0, "high": 15.0, "source": "InfoHoreca (mercado hamburguesa 2025, nacional)", "source_url": "https://www.infohoreca.com/noticias/20250528/mercado-hamburguesa-saturacion", "note": "Derivado del ticket medio nacional (12-18), extremo bajo por ciudad media. Estimación."},
+    {"item": "pizza", "low": 7.5, "typical": 10.5, "high": 14.0, "source": "derivado de rangos BCN/nacionales", "source_url": "https://www.timeout.es/barcelona/es/restaurantes/las-mejores-pizzerias-de-barcelona", "note": "Sin dato específico Reus. Derivado de BCN menos 2-3 EUR. Estimación."},
+    {"item": "pasta", "low": 8.0, "typical": 10.5, "high": 14.0, "source": "derivado (italianos de ciudad media)", "source_url": "https://www.thefork.es/restaurantes/reus-c454946", "note": "Derivado; los locales económicos de TheFork Reus se mueven por debajo de 25 EUR pp. Estimación."},
+    {"item": "tapa / ración media", "low": 3.5, "typical": 5.5, "high": 8.0, "source": "Loomis Pay (PVP tapas nacional)", "source_url": "https://es.loomispay.com/blog/tapas-que-triunfan-en-bares-espana", "note": "Derivado de media nacional (bravas 4-6,50) con descuento de ciudad media; zona vermut Plaça Mercadal al alto. Estimación."},
+    {"item": "entrante medio", "low": 5.0, "typical": 7.5, "high": 11.0, "source": "derivado de Numbeo Tarragona (gama media)", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Derivado de la provincia. Estimación."},
+    {"item": "plato principal carne", "low": 10.0, "typical": 14.0, "high": 20.0, "source": "derivado de Numbeo Tarragona + menús Reus publicados", "source_url": "https://theobjective.com/lifestyle/2024-02-28/donde-comer-reus/", "note": "Derivado: coherente con menús 16-25 y ticket provincial 25 pp gama media. Estimación."},
+    {"item": "plato principal pescado", "low": 12.0, "typical": 16.0, "high": 22.0, "source": "derivado de Numbeo Tarragona (gama media)", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Derivado con prima del pescado; Reus interior, sin frente marítimo. Estimación."},
+    {"item": "arroz / paella (por persona)", "low": 13.0, "typical": 17.0, "high": 22.0, "source": "derivado de cartas costa catalana (Mana75/Bodega Joan)", "source_url": "https://mana75.es/blog/paellas-barcelona-tripadvisor/", "note": "Derivado del rango BCN/costa sin punta turística (Reus = interior). Estimación."},
+    {"item": "postre", "low": 3.5, "typical": 5.0, "high": 7.0, "source": "derivado de composición de ticket medio", "source_url": "https://restauracionnews.com/2026/01/thefork-reservas-online/", "note": "Derivado. Sin fuente directa. Estimación."}
+  ],
+  "sources": [
+    {"name": "The Objective — dónde comer en Reus (menús con precios)", "url": "https://theobjective.com/lifestyle/2024-02-28/donde-comer-reus/"},
+    {"name": "El Racó de JP (Reus) — menú diario publicado 17/19 EUR", "url": "https://www.elracojp.com/"},
+    {"name": "TheFork — restaurantes Reus (económicos <25 EUR)", "url": "https://www.thefork.es/restaurantes/reus-c454946"},
+    {"name": "Numbeo — Cost of Living Tarragona (proxy provincial; Reus sin datos propios)", "url": "https://www.numbeo.com/cost-of-living/in/Tarragona"},
+    {"name": "Hostelería de España + Edenred, menú del día 2025 (vía InfoHoreca)", "url": "https://www.infohoreca.com/noticias/20251125/precio-menu-dia-subida-14-euros-rentabilidad-restaurantes"},
+    {"name": "Hosteltur — café medio en bares de España", "url": "https://www.hosteltur.com/comunidad/nota/018944_tomarse-un-cafe-cuesta-de-media-147-euros-en-los-bares-espanoles.html"},
+    {"name": "Gestión de Restaurantes — precio copa de vino", "url": "https://gestionderestaurantes.es/cuanto-cuesta-realmente-una-copa-de-vino-en-un-bar/"},
+    {"name": "InfoHoreca — mercado de la hamburguesa 2025", "url": "https://www.infohoreca.com/noticias/20250528/mercado-hamburguesa-saturacion"},
+    {"name": "Loomis Pay — PVP tapas España", "url": "https://es.loomispay.com/blog/tapas-que-triunfan-en-bares-espana"},
+    {"name": "Mana75 — paellas (cartas con precios, costa catalana)", "url": "https://mana75.es/blog/paellas-barcelona-tripadvisor/"}
+  ]
+}

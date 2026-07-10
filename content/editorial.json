@@ -1,0 +1,256 @@
+{
+  "sections": [
+    {
+      "id": "aperitif",
+      "course": { "en": "Aperitif", "es": "Aperitivo" },
+      "title": { "en": "The only advertisement every guest reads", "es": "El único anuncio que leen todos tus clientes" },
+      "lede": {
+        "en": "Most restaurants agonise over the food and photocopy the menu. The menu is where the money is decided.",
+        "es": "La mayoría de restaurantes sudan la cocina y fotocopian la carta. La carta es donde se decide el dinero."
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "en": "Every party that sits down reads one piece of marketing with total attention: the menu. It is read at the exact moment of decision, wallet already open, and yet it is usually the least designed object in the room. Menu engineering is the discipline that treats the carta as what it is — a portfolio of products with margins, demand curves and real estate — and edits it accordingly.",
+          "es": "Cada mesa que se sienta lee una pieza de marketing con atención total: la carta. Se lee en el momento exacto de la decisión, con la cartera ya abierta, y aun así suele ser el objeto menos diseñado del local. La ingeniería de menús es la disciplina que trata la carta como lo que es — un portfolio de productos con márgenes, curvas de demanda y metros cuadrados — y la edita en consecuencia.",
+          "cites": []
+        },
+        {
+          "type": "p",
+          "en": "The discipline has a birth certificate: in 1982, Michael Kasavana and Donald Smith of Michigan State University published Menu Engineering, crossing each dish's popularity with its contribution margin — the euros a dish actually leaves behind, not the percentage. Everything since — the psychology of prices, the eye-tracking, the copywriting studies — hangs off that simple two-axis frame.",
+          "es": "La disciplina tiene partida de nacimiento: en 1982, Michael Kasavana y Donald Smith, de Michigan State, publicaron Menu Engineering, cruzando la popularidad de cada plato con su margen de contribución — los euros que deja de verdad, no el porcentaje. Todo lo que vino después — la psicología del precio, el eye-tracking, los estudios de copy — cuelga de ese marco simple de dos ejes.",
+          "cites": ["kasavana-smith-1982"]
+        },
+        {
+          "type": "p",
+          "en": "A warning before the tasting begins: this field is full of folklore dressed as science. Where the evidence is solid we will say so; where it is a trade rule of thumb, we will call it doctrine; where a famous study has caveats, you will get the caveats. A menu built on verified findings beats one built on conference slides.",
+          "es": "Un aviso antes de empezar la degustación: este campo está lleno de folclore vestido de ciencia. Donde la evidencia es sólida, lo diremos; donde es regla del oficio, la llamaremos doctrina; donde un estudio famoso tiene letra pequeña, tendrás la letra pequeña. Una carta construida sobre hallazgos verificados le gana a una construida sobre diapositivas de congreso.",
+          "cites": []
+        }
+      ]
+    },
+    {
+      "id": "matrix",
+      "course": { "en": "First course", "es": "Primer plato" },
+      "title": { "en": "Stars, plowhorses, puzzles, dogs", "es": "Estrellas, caballos, puzzles, perros" },
+      "lede": {
+        "en": "Two questions per dish: do they order it, and does it earn? Four answers, four very different jobs.",
+        "es": "Dos preguntas por plato: ¿lo piden? ¿deja dinero? Cuatro respuestas, cuatro trabajos muy distintos."
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "en": "Kasavana and Smith's matrix classifies every dish inside its own category — mains compete with mains, not with coffee. A dish counts as popular when it captures at least 70% of an equal share of its category's sales: in a section of ten dishes, anything above 7% of orders. It counts as profitable when its contribution margin beats the category's demand-weighted average. Two cutoffs, four quadrants.",
+          "es": "La matriz de Kasavana y Smith clasifica cada plato dentro de su propia categoría — los principales compiten con los principales, no con el café. Un plato cuenta como popular cuando captura al menos el 70% de la cuota equitativa de ventas de su sección: en una de diez platos, más del 7% de las comandas. Cuenta como rentable cuando su margen de contribución supera la media ponderada por demanda de la categoría. Dos cortes, cuatro cuadrantes.",
+          "cites": ["kasavana-smith-1982"]
+        },
+        {
+          "type": "p",
+          "en": "Stars are popular and profitable: protect them, box them, never discount them. Plowhorses are loved but thin — the crowd-pullers whose price you nudge quietly or whose plate cost you engineer. Puzzles earn well but sit ignored: rename them, move them, have the server say their name out loud. Dogs do neither job; they occupy card and kitchen. Retire them or rebuild them — sentiment is not a line item.",
+          "es": "Las estrellas son populares y rentables: protégelas, enmárcalas, no las rebajes jamás. Los caballos de tiro llenan el local pero dejan poco — su precio se toca con sordina o se les hace ingeniería de escandallo. Los puzzles ganan bien pero nadie los ve: renómbralos, muévelos, que el camarero los pronuncie. Los perros no hacen ningún trabajo; ocupan carta y cocina. Jubílalos o reconstrúyelos — el cariño no es una partida contable.",
+          "cites": ["kasavana-smith-1982"]
+        },
+        {
+          "type": "p",
+          "en": "One refinement worth knowing: David Pavesic pointed out that averaging margins can flatter expensive, slow-selling dishes, and proposed weighting the contribution margin by what actually sells. The analyzer below uses the classic thresholds and Pavesic's demand-weighted margin — the version that keeps a €38 showpiece from grading the rest of the card on a curve.",
+          "es": "Un refinamiento que conviene conocer: David Pavesic señaló que promediar márgenes favorece a los platos caros que apenas rotan, y propuso ponderar el margen de contribución por lo que de verdad se vende. El analizador de abajo usa los cortes clásicos y el margen ponderado por demanda de Pavesic — la versión que impide que un plato-escaparate de 38 € puntúe al resto de la carta con ventaja.",
+          "cites": ["pavesic-1983"]
+        },
+        {
+          "type": "pull",
+          "en": "A menu is a portfolio. Every dish must justify its square centimetres.",
+          "es": "Una carta es un portfolio. Cada plato debe justificar sus centímetros cuadrados."
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "course": { "en": "Second course", "es": "Segundo plato" },
+      "title": { "en": "The architecture of a price", "es": "La arquitectura de un precio" },
+      "lede": {
+        "en": "Prices are read, not computed. What the eye reads first, and what the number feels like, are design decisions.",
+        "es": "Los precios se leen, no se calculan. Qué lee primero el ojo, y qué sensación deja el número, son decisiones de diseño."
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "en": "Start with the symbol. In a field experiment at the Culinary Institute of America's restaurant, guests who received a menu with bare numerals — no dollar sign, no decimals — spent about 8% more per cover than those shown symbolic prices. The currency sign is a small invoice delivered before the food arrives. Fine dining dropped it long ago; the finding says everyone else may quietly follow.",
+          "es": "Empieza por el símbolo. En un experimento de campo en el restaurante del Culinary Institute of America, las mesas que recibieron una carta con números desnudos — sin símbolo, sin decimales — gastaron alrededor de un 8% más por cubierto que las que vieron precios con símbolo. El signo de moneda es una pequeña factura entregada antes de que llegue la comida. La alta cocina lo quitó hace tiempo; el hallazgo sugiere que el resto puede seguirla sin hacer ruido.",
+          "cites": ["yang-kimes-sessarego-2009"]
+        },
+        {
+          "type": "menuline", "label": { "en": "Numeral-only prices, spend per check", "es": "Precios sin símbolo, gasto por cuenta" }, "value": "+8%", "cite": "yang-kimes-sessarego-2009"
+        },
+        {
+          "type": "p",
+          "en": "Then the left digit. Thomas and Morwitz showed the one-cent drop only works when it changes the first digit read: 3.00 to 2.99 registers, 3.60 to 3.59 does not. Charm endings are not magic dust — they are left-digit engineering. And they carry a register: Wadhwa and Zhang found rounded prices feel right for hedonic, feeling-based purchases, while precise prices suit calculated ones. A tasting menu at 85 reads as confidence; at 84.90 it reads as arithmetic.",
+          "es": "Luego, el dígito izquierdo. Thomas y Morwitz demostraron que el céntimo de menos solo funciona cuando cambia el primer dígito que se lee: de 3,00 a 2,99 se nota; de 3,60 a 3,59, no. Las terminaciones charm no son polvo mágico — son ingeniería del dígito izquierdo. Y tienen registro: Wadhwa y Zhang hallaron que los precios redondos «sientan bien» en compras hedónicas, de sensación, y los precisos en compras calculadas. Un menú degustación a 85 lee como seguridad; a 84,90 lee como aritmética.",
+          "cites": ["thomas-morwitz-left-digit-2005", "wadhwa-zhang-rounded-2015"]
+        },
+        {
+          "type": "p",
+          "en": "Anchors and decoys do the quiet lifting. Huber, Payne and Puto showed that adding an option clearly worse than one alternative shifts choices toward the dominating option — the asymmetric-dominance effect. On a carta, the €38 chuletón nobody orders is not a failure; it is the reason the €26 entrecôte looks reasonable. Every category deserves one deliberate ceiling.",
+          "es": "Anclas y señuelos hacen el trabajo silencioso. Huber, Payne y Puto demostraron que añadir una opción claramente peor que otra desplaza la elección hacia la opción dominante — el efecto de dominancia asimétrica. En una carta, el chuletón de 38 € que nadie pide no es un fracaso; es la razón de que el entrecot de 26 € parezca razonable. Cada categoría merece un techo puesto a propósito.",
+          "cites": ["huber-payne-puto-1982"]
+        },
+        {
+          "type": "p",
+          "en": "Finally, the skeleton. The trade attributes to 'Omnes' four rules of price structure; the attribution is murky — no primary paper exists — but the doctrine has kept French menus honest for decades. The two that survive scrutiny: the dearest item in a category should not exceed roughly three times the cheapest, and the middle third of the price range should hold at least as many dishes as both extremes together. Break the first and your card reads schizophrenic; break the second and you are pushing guests to the edges you did not choose for them.",
+          "es": "Por último, el esqueleto. El oficio atribuye a «Omnes» cuatro reglas de estructura de precios; la atribución es turbia — no existe paper original — pero la doctrina lleva décadas manteniendo honestas las cartas francesas. Las dos que aguantan el escrutinio: el plato más caro de una sección no debería superar unas tres veces el más barato, y el tercio central del rango debería reunir al menos tantos platos como los dos extremos juntos. Rompe la primera y tu carta lee esquizofrénica; rompe la segunda y empujas al cliente a extremos que no elegiste para él.",
+          "cites": ["omnes-principles"]
+        },
+        {
+          "type": "menuline", "label": { "en": "Dispersion ceiling, dearest over cheapest", "es": "Techo de dispersión, caro sobre barato" }, "value": "3×", "cite": "omnes-principles"
+        },
+        {
+          "type": "menuline", "label": { "en": "The cent that matters", "es": "El céntimo que importa" }, "value": "3.00 → 2.99", "cite": "thomas-morwitz-left-digit-2005"
+        }
+      ]
+    },
+    {
+      "id": "scanning",
+      "course": { "en": "Third course", "es": "Tercer plato" },
+      "title": { "en": "How a menu is actually read", "es": "Cómo se lee una carta de verdad" },
+      "lede": {
+        "en": "The famous 'golden triangle' has a problem: when researchers tracked real eyes, it wasn't there.",
+        "es": "El famoso «triángulo dorado» tiene un problema: cuando se midieron ojos de verdad, no apareció."
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "en": "Menu folklore says the gaze lands mid-page, leaps to the top right corner, and that dishes placed in this 'sweet spot' sell themselves. When Sybil Yang put infrared eye-tracking on diners reading mock menus, she found something duller and more useful: people read menus sequentially, like a book, left page to right, top to bottom, slowing where the content interests them. No triangle, no magic corner. The practical lesson survives the debunking — if everything is read, everything is placement.",
+          "es": "El folclore dice que la mirada cae al centro, salta a la esquina superior derecha, y que lo colocado en ese «sweet spot» se vende solo. Cuando Sybil Yang puso eye-tracking infrarrojo a comensales leyendo cartas de prueba, encontró algo más aburrido y más útil: la gente lee la carta secuencialmente, como un libro, de página izquierda a derecha, de arriba abajo, frenando donde el contenido le interesa. Ni triángulo ni esquina mágica. La lección práctica sobrevive al desmentido — si todo se lee, todo es colocación.",
+          "cites": ["yang-eyetracking-2012"]
+        },
+        {
+          "type": "p",
+          "en": "Position does matter — just one level down. Dayan and Bar-Hillel manipulated where dishes sat within their own category list and found items at the top or bottom of the list chosen up to twice as often as the same dishes buried in the middle. The ends of a section are shelf space at eye level; the middle is where dogs go to hide. Put the dishes you need sold at the edges of their block, not the edges of the page.",
+          "es": "La posición importa — un nivel más abajo. Dayan y Bar-Hillel manipularon dónde caía cada plato dentro de su propia sección y encontraron que los de arriba y abajo de la lista se elegían hasta el doble que los mismos platos enterrados en el medio. Los extremos de una sección son el estante a la altura de los ojos; el medio es donde se esconden los perros. Coloca lo que necesitas vender en los bordes de su bloque, no en los bordes de la página.",
+          "cites": ["dayan-barhillel-position-2011"]
+        },
+        {
+          "type": "menuline", "label": { "en": "First or last in the section vs. buried", "es": "Primero o último de la sección vs. enterrado" }, "value": "×2", "cite": "dayan-barhillel-position-2011"
+        },
+        {
+          "type": "p",
+          "en": "And how long should the list be? The jam study made 'less is more' a slogan: 30% bought at a six-jam table against 3% at twenty-four. But when Scheibehenne pooled fifty experiments, the average choice-overload effect was essentially zero — it appears under specific conditions: unfamiliar options, no favourites, time pressure. A tourist reading their first Catalan carta is exactly that condition; a regular at their neighbourhood bar is not. Trim for the guest you actually serve, not for the slogan.",
+          "es": "¿Y cuán larga debe ser la lista? El estudio de las mermeladas convirtió el «menos es más» en eslogan: compró el 30% ante seis mermeladas frente al 3% ante veinticuatro. Pero cuando Scheibehenne agregó cincuenta experimentos, el efecto medio de sobrecarga fue prácticamente cero — aparece en condiciones concretas: opciones desconocidas, sin favoritos, con prisa. Un turista leyendo su primera carta catalana es exactamente esa condición; el habitual del bar de barrio, no. Recorta para el cliente que sirves de verdad, no para el eslogan.",
+          "cites": ["iyengar-lepper-jam-2000", "scheibehenne-meta-2010"]
+        },
+        {
+          "type": "menuline", "label": { "en": "Jam stand, 6 options vs 24", "es": "Puesto de mermeladas, 6 opciones vs 24" }, "value": "30% / 3%", "cite": "iyengar-lepper-jam-2000"
+        },
+        {
+          "type": "menuline", "label": { "en": "Mean overload effect across 50 experiments", "es": "Efecto medio de sobrecarga en 50 experimentos" }, "value": "≈ 0", "cite": "scheibehenne-meta-2010"
+        }
+      ]
+    },
+    {
+      "id": "copy",
+      "course": { "en": "Fourth course", "es": "Cuarto plato" },
+      "title": { "en": "Words you can taste", "es": "Palabras que saben" },
+      "lede": {
+        "en": "The description is part of the recipe. Diners eat what the label tells them they are eating.",
+        "es": "La descripción es parte de la receta. El cliente come lo que la etiqueta le dice que está comiendo."
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "en": "The most quoted number in menu copy comes from Brian Wansink's cafeteria experiment: descriptive labels — 'Grandma's zucchini cookies', 'succulent Italian seafood filet' — lifted sales of the labelled dishes by 27%. Handle the number with tongs: it was a university cafeteria, 140 diners, and Wansink later left Cornell amid retractions of other work. The direction, though, is corroborated: in a companion study, the same dishes under evocative names were rated better tasting and more appealing, with favourable comments doubling.",
+          "es": "El número más citado del copy de cartas sale del experimento de cafetería de Brian Wansink: las etiquetas descriptivas — «galletas de calabacín de la abuela», «suculento filete de marisco italiano» — subieron un 27% las ventas de los platos etiquetados. Cógelo con pinzas: era una cafetería universitaria, 140 comensales, y Wansink acabó saliendo de Cornell entre retractaciones de otros trabajos. La dirección, sin embargo, está corroborada: en el estudio hermano, los mismos platos con nombre evocador puntuaron mejor en sabor y apetencia, con el doble de comentarios favorables.",
+          "cites": ["wansink-descriptive-labels-2001", "wansink-sensory-names-2005"]
+        },
+        {
+          "type": "menuline", "label": { "en": "Descriptive labels, sales of labelled dishes", "es": "Etiquetas descriptivas, ventas del plato" }, "value": "+27%", "cite": "wansink-descriptive-labels-2001"
+        },
+        {
+          "type": "p",
+          "en": "The cleaner experiment is older. Levin and Gaeth gave people identical ground beef labelled either '75% lean' or '25% fat': the lean framing won every rating, even after tasting — the frame literally seasoned the meat. On a menu this is free money: 'slow-braised eight hours' and 'braised since morning' describe the same pot, and only one of them feeds the imagination before the kitchen fires a single pan.",
+          "es": "El experimento más limpio es más viejo. Levin y Gaeth sirvieron la misma carne picada etiquetada «75% magra» o «25% grasa»: el marco magro ganó todas las valoraciones, incluso después de probarla — el encuadre literalmente sazonó la carne. En una carta esto es dinero gratis: «ocho horas a fuego lento» y «estofado desde por la mañana» describen la misma olla, y solo uno alimenta la imaginación antes de que la cocina encienda un fogón.",
+          "cites": ["levin-gaeth-framing-1988"]
+        },
+        {
+          "type": "p",
+          "en": "House rules for copy that sells without lying: name the technique, the origin or the time — never the adjective alone. 'Delicious' is the word a menu uses when it has nothing to say. Sensory and specific beats superlative and generic; and every claim must survive the plate arriving. A description is a promise with a delivery window of eleven minutes.",
+          "es": "Reglas de la casa para un copy que vende sin mentir: nombra la técnica, el origen o el tiempo — nunca el adjetivo solo. «Delicioso» es la palabra que usa una carta cuando no tiene nada que decir. Sensorial y específico gana a superlativo y genérico; y toda promesa debe sobrevivir a la llegada del plato. Una descripción es una promesa con ventana de entrega de once minutos.",
+          "cites": []
+        }
+      ]
+    },
+    {
+      "id": "room",
+      "course": { "en": "Fifth course", "es": "Quinto plato" },
+      "title": { "en": "The room is part of the menu", "es": "La sala también es carta" },
+      "lede": {
+        "en": "Tips, tempo and the weight of things: the psychology continues after the order is taken.",
+        "es": "Propinas, tempo y el peso de las cosas: la psicología sigue después de tomar la comanda."
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "en": "Tipping runs on reciprocity, and the field experiments are almost embarrassingly practical. A sweet with the bill lifts the tip — most when it feels personal and spontaneous. 'Thank you' handwritten on the check adds about two points. A light touch on the shoulder, a server who gives her name at a Sunday brunch — 23.4% against 15% — and, most striking, a Dutch waitress who simply repeated each order back word for word raised her tips by more than two thirds. None of this is about service quality; it is about being seen.",
+          "es": "La propina funciona por reciprocidad, y los experimentos de campo son de una practicidad casi vergonzosa. Un dulce con la cuenta sube la propina — más cuando parece personal y espontáneo. Un «gracias» manuscrito en el tiquet añade unos dos puntos. Un toque leve en el hombro, una camarera que se presenta por su nombre en un brunch — 23,4% contra 15% — y, lo más llamativo, una camarera holandesa que simplemente repetía cada comanda palabra por palabra subió sus propinas más de dos tercios. Nada de esto va de calidad de servicio; va de sentirse visto.",
+          "cites": ["strohmetz-candy-2002", "rind-bordia-thankyou-1995", "crusco-wetzel-midas-1984", "garrity-degelman-1990", "vanbaaren-mimicry-2003"]
+        },
+        {
+          "type": "menuline", "label": { "en": "Repeating the order back, average tip", "es": "Repetir la comanda, propina media" }, "value": "+68%", "cite": "vanbaaren-mimicry-2003" },
+        {
+          "type": "menuline", "label": { "en": "Server introduces herself by name", "es": "Presentarse por el nombre" }, "value": "23.4% vs 15%", "cite": "garrity-degelman-1990" },
+        {
+          "type": "menuline", "label": { "en": "Candy with the check, best condition", "es": "Caramelos con la cuenta, mejor condición" }, "value": "≈ +21%", "cite": "strohmetz-candy-2002" },
+        {
+          "type": "p",
+          "en": "Before the toolbox goes to your head, Michael Lynn's meta-analysis across 2,547 dining parties found the link between rated service quality and tip size positive but weak — tips are a social ritual more than a performance review. His survey work suggests servers who stack several of these small techniques earn meaningfully more. The house takeaway: train the gestures, not just the carrying of plates.",
+          "es": "Antes de que la caja de herramientas se te suba a la cabeza: el metaanálisis de Michael Lynn sobre 2.547 mesas encontró que la relación entre calidad de servicio percibida y propina es positiva pero débil — la propina es más ritual social que evaluación de rendimiento. Su trabajo de encuestas sugiere que los camareros que apilan varias de estas pequeñas técnicas ganan sensiblemente más. Lección de la casa: entrena los gestos, no solo el llevar platos.",
+          "cites": ["lynn-mccall-2000", "lynn-mccall-2009"]
+        },
+        {
+          "type": "p",
+          "en": "The soundtrack sets the spend. Milliman alternated slow and fast background music in a restaurant: slow-music tables lingered eleven minutes longer and drank roughly 40% more at the bar, with food sales flat. North and colleagues played French or German music by a wine display: French days sold French bottles five to one; German days flipped the ratio — and almost nobody credited the music. Ambience is a pricing instrument that never appears on the bill.",
+          "es": "La banda sonora fija el gasto. Milliman alternó música lenta y rápida en un restaurante: las mesas con música lenta se quedaron once minutos más y bebieron en barra en torno a un 40% más, con la comida plana. North y compañía pusieron música francesa o alemana junto a un expositor de vinos: los días franceses vendieron botellas francesas cinco a uno; los alemanes invirtieron la proporción — y casi nadie atribuyó nada a la música. El ambiente es un instrumento de pricing que nunca sale en la cuenta.",
+          "cites": ["milliman-music-tempo-1986", "north-wine-music-1997-1999"]
+        },
+        {
+          "type": "menuline", "label": { "en": "Slow music, bar spend", "es": "Música lenta, gasto en barra" }, "value": "≈ +40%", "cite": "milliman-music-tempo-1986" },
+        {
+          "type": "menuline", "label": { "en": "French music, French vs German bottles", "es": "Música francesa, botellas francesas vs alemanas" }, "value": "5 : 1", "cite": "north-wine-music-1997-1999" },
+        {
+          "type": "p",
+          "en": "Even the object in the guest's hands is talking. Identical yogurt from a heavier bowl was rated denser, more expensive-seeming and better liked; heavier menus raised the perceived class of the whole establishment before a single dish was read. This is why this page's namesake matters: the guéridon, the trolley wheeled to the table, is theatre by weight and presence — the physical proof that presentation is pricing.",
+          "es": "Hasta el objeto que el cliente tiene en las manos habla. Un yogur idéntico servido en bol más pesado se percibió más denso, más caro y gustó más; una carta más pesada elevó la categoría percibida de todo el local antes de leer un solo plato. Por eso importa el nombre de esta página: el guéridon, la mesita con ruedas que llega hasta la mesa, es teatro por peso y presencia — la prueba física de que la presentación es pricing.",
+          "cites": ["piqueras-fiszman-dish-weight-2011", "magnini-kim-menu-weight-2016"]
+        },
+        {
+          "type": "pull",
+          "en": "Nobody thinks the music chose the wine. The music chose the wine.",
+          "es": "Nadie cree que la música eligió el vino. La música eligió el vino."
+        }
+      ]
+    },
+    {
+      "id": "law",
+      "course": { "en": "Digestif", "es": "Digestivo" },
+      "title": { "en": "The fine print is also design", "es": "La letra pequeña también es diseño" },
+      "lede": {
+        "en": "Three rules with fines attached — and each one can be plated as hospitality instead of bureaucracy.",
+        "es": "Tres normas con multa — y las tres se pueden emplatar como hospitalidad en vez de burocracia."
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "en": "In the EU, fourteen allergens must be declared for unpackaged food — gluten to molluscs, sulphites to lupin — under Regulation 1169/2011. In Catalonia, article 15.2 of Llei 20/1985 bans promoting alcohol through offers 'announced as barra libre, 2x1, 3x1 or similar'; the happy-hour chalkboard is a fine waiting for an inspector. And since Spain's Ley 7/2022, article 18.3, every hospitality establishment must offer free non-bottled water alongside its own offer.",
+          "es": "En la UE, catorce alérgenos son de declaración obligatoria en comida no envasada — del gluten a los moluscos, de los sulfitos a los altramuces — por el Reglamento 1169/2011. En Cataluña, el artículo 15.2 de la Llei 20/1985 prohíbe promocionar alcohol con ofertas «que se anuncian como barra libre, 2x1, 3x1 o similares»; la pizarra de happy hour es una multa esperando inspector. Y desde la Ley 7/2022, artículo 18.3, todo establecimiento de hostelería debe ofrecer agua no envasada gratuita junto a su propia oferta.",
+          "cites": ["eu-reg-1169-2011-allergens", "llei-20-1985-catalunya-alcohol", "ley-7-2022-agua-gratuita"]
+        },
+        {
+          "type": "menuline", "label": { "en": "Allergens of mandatory declaration", "es": "Alérgenos de declaración obligatoria" }, "value": "14", "cite": "eu-reg-1169-2011-allergens" },
+        {
+          "type": "p",
+          "en": "The engineering view: compliance lines are copy too. 'Ask us about allergens — we cook around them daily' reads as care, not as legal armour. 'Tap water, always, on the house' turns an obligation into the cheapest generosity on the card. The analyzer below checks all three automatically; turning the findings into charm is the house's job.",
+          "es": "La mirada de ingeniería: las líneas legales también son copy. «Pregúntanos por los alérgenos — cocinamos con ellos en mente cada día» lee como cuidado, no como escudo jurídico. «Agua del grifo, siempre, por cuenta de la casa» convierte una obligación en la generosidad más barata de la carta. El analizador de abajo comprueba las tres normas automáticamente; convertir el aviso en encanto es trabajo de la casa.",
+          "cites": []
+        }
+      ]
+    }
+  ]
+}

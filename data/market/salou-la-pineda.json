@@ -1,0 +1,37 @@
+{
+  "zone": "Salou - La Pineda (costa turística)",
+  "currency": "EUR",
+  "as_of": "2026-07",
+  "disclaimer": "Estimates aggregated from public sources; not a survey. For directional benchmarking only. Zona con fuerte estacionalidad: los precios de julio-agosto en primera línea pueden superar el 'high'.",
+  "categories": [
+    {"item": "caña de cerveza (200-250ml)", "low": 2.0, "typical": 2.8, "high": 4.0, "source": "derivado de Numbeo Tarragona + prima turística", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Derivado de media provincial Tarragona con prima de zona turística en temporada; calles interiores compiten a la baja (ofertas a turistas). Estimación."},
+    {"item": "pinta / cerveza 0,5L de barril", "low": 3.0, "typical": 4.0, "high": 6.0, "source": "derivado de Numbeo Tarragona + prima turística", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Mercado de pubs británicos/irlandeses con pinta como formato estándar; primera línea al alto en verano. Sin fuente directa local. Estimación."},
+    {"item": "copa de vino", "low": 3.0, "typical": 4.0, "high": 7.0, "source": "Gestión de Restaurantes (nacional) + prima turística", "source_url": "https://gestionderestaurantes.es/cuanto-cuesta-realmente-una-copa-de-vino-en-un-bar/", "note": "Derivado: rango nacional con prima de zona turística. Estimación."},
+    {"item": "gin-tonic / cóctel", "low": 7.0, "typical": 9.0, "high": 12.0, "source": "derivado de rangos BCN (Time Out/Crónica Global) + mercado turístico", "source_url": "https://www.timeout.es/barcelona/es/bars-pubs/copas-low-cost", "note": "Sin dato directo: cocktail bars de paseo marítimo suelen operar 8-12; happy-hour/2x1 de alcohol PROHIBIDO en Cataluña, no comparar con mercados que lo usan. Estimación."},
+    {"item": "refresco (33cl)", "low": 2.2, "typical": 2.5, "high": 3.5, "source": "derivado de Numbeo Tarragona + prima turística", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Derivado (Tarragona media 2,20) con prima de terraza/primera línea. Estimación."},
+    {"item": "café (con leche / cappuccino)", "low": 1.5, "typical": 2.0, "high": 3.0, "source": "derivado de Numbeo Tarragona + Hosteltur", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Derivado de la provincia (cappuccino 2,32) con prima de terraza turística. Estimación."},
+    {"item": "menú del día", "low": 11.0, "typical": 15.0, "high": 21.5, "source": "cartas publicadas Salou (Salir.com / Boquet / listados locales)", "source_url": "https://www.salir.com/comer-bien-y-barato-en-salou-art-1698.html", "note": "DATO DIRECTO de cartas publicadas: menús desde 11 (Fox and Hounds) y desde 15 en varios locales; Boquet 21,50 con bebida y postre. La competencia turística mantiene el suelo bajo."},
+    {"item": "hamburguesa (completa, gourmet)", "low": 9.0, "typical": 13.0, "high": 17.0, "source": "InfoHoreca (nacional) + prima turística", "source_url": "https://www.infohoreca.com/noticias/20250528/mercado-hamburguesa-saturacion", "note": "Derivado del ticket nacional 12-18; mucha oferta fast-casual para familias. Estimación."},
+    {"item": "pizza", "low": 8.0, "typical": 11.0, "high": 16.0, "source": "derivado de rangos BCN/nacionales", "source_url": "https://www.timeout.es/barcelona/es/restaurantes/las-mejores-pizzerias-de-barcelona", "note": "Alta densidad de pizzerías turísticas; margen amplio entre económicas y de paseo marítimo. Sin fuente directa local. Estimación."},
+    {"item": "pasta", "low": 8.0, "typical": 11.0, "high": 16.0, "source": "derivado (italianos turísticos)", "source_url": "https://www.thefork.es/restaurantes/salou-c476079", "note": "Derivado; coherente con locales Salou en TheFork por debajo de 25 EUR pp. Estimación."},
+    {"item": "tapa / ración media", "low": 4.0, "typical": 6.5, "high": 10.0, "source": "Loomis Pay (nacional) + prima turística", "source_url": "https://es.loomispay.com/blog/tapas-que-triunfan-en-bares-espana", "note": "Derivado de media nacional con prima de zona turística en raciones para compartir. Estimación."},
+    {"item": "entrante medio", "low": 6.0, "typical": 9.0, "high": 13.0, "source": "derivado de Numbeo Tarragona (gama media) + prima turística", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Derivado por composición de ticket. Estimación."},
+    {"item": "plato principal carne", "low": 12.0, "typical": 16.0, "high": 24.0, "source": "derivado de Numbeo Tarragona + cartas Salou", "source_url": "https://www.thefork.es/restaurantes/salou-c476079", "note": "Derivado de la provincia con prima turística moderada. Estimación."},
+    {"item": "plato principal pescado", "low": 13.0, "typical": 18.0, "high": 28.0, "source": "derivado de Numbeo Tarragona + oferta marisco primera línea", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Derivado: los especializados en marisco/pescado de paseo marítimo empujan el alto. Estimación."},
+    {"item": "arroz / paella (por persona)", "low": 15.0, "typical": 19.0, "high": 28.0, "source": "Grupo Andria (análisis costas turísticas) + cartas costa catalana", "source_url": "https://grupoandria.es/precio-paella-para-15-personas/", "note": "Semi-directo: la paella es el plato-gancho turístico de la zona; rango costa 15-30 pp con la primera línea al alto. Estimación."},
+    {"item": "postre", "low": 4.0, "typical": 5.5, "high": 8.0, "source": "derivado de composición de ticket medio", "source_url": "https://restauracionnews.com/2026/01/thefork-reservas-online/", "note": "Derivado. Sin fuente directa. Estimación."}
+  ],
+  "sources": [
+    {"name": "Salir.com — comer bien y barato en Salou (menús con precios)", "url": "https://www.salir.com/comer-bien-y-barato-en-salou-art-1698.html"},
+    {"name": "Boquet Restaurant Salou — menú del día 21,50 EUR publicado", "url": "https://boquet.carrd.co/"},
+    {"name": "Sluurpy — restaurantes con menú en Salou (desde 15 EUR)", "url": "https://www.sluurpy.es/salou/restaurantes"},
+    {"name": "TheFork — restaurantes Salou (precios medios por local)", "url": "https://www.thefork.es/restaurantes/salou-c476079"},
+    {"name": "Numbeo — Cost of Living Tarragona (proxy provincial; Salou/La Pineda sin datos propios)", "url": "https://www.numbeo.com/cost-of-living/in/Tarragona"},
+    {"name": "Grupo Andria — análisis precio paella en destinos turísticos", "url": "https://grupoandria.es/precio-paella-para-15-personas/"},
+    {"name": "Hostelería de España + Edenred, menú del día 2025 (vía InfoHoreca)", "url": "https://www.infohoreca.com/noticias/20251125/precio-menu-dia-subida-14-euros-rentabilidad-restaurantes"},
+    {"name": "InfoHoreca — mercado de la hamburguesa 2025", "url": "https://www.infohoreca.com/noticias/20250528/mercado-hamburguesa-saturacion"},
+    {"name": "Gestión de Restaurantes — precio copa de vino", "url": "https://gestionderestaurantes.es/cuanto-cuesta-realmente-una-copa-de-vino-en-un-bar/"},
+    {"name": "Loomis Pay — PVP tapas España", "url": "https://es.loomispay.com/blog/tapas-que-triunfan-en-bares-espana"},
+    {"name": "Time Out Barcelona — copas low cost (proxy gin-tonic)", "url": "https://www.timeout.es/barcelona/es/bars-pubs/copas-low-cost"}
+  ]
+}

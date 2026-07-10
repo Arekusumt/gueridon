@@ -1,0 +1,36 @@
+{
+  "zone": "Tarragona ciudad",
+  "currency": "EUR",
+  "as_of": "2026-07",
+  "disclaimer": "Estimates aggregated from public sources; not a survey. For directional benchmarking only.",
+  "categories": [
+    {"item": "caña de cerveza (200-250ml)", "low": 1.8, "typical": 2.5, "high": 3.5, "source": "derivado de Numbeo Tarragona (0,5L barril 3,00)", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Derivado del 0,5L directo (media 3,00; 2,50-3,50); la caña suele ir 0,5-1 EUR por debajo. Estimación."},
+    {"item": "pinta / cerveza 0,5L de barril", "low": 2.5, "typical": 3.0, "high": 3.5, "source": "Numbeo Tarragona (jun 2026, 17 contribuyentes)", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Dato crowdsourced directo pero muestra pequeña (17 contribuyentes)."},
+    {"item": "copa de vino", "low": 2.5, "typical": 3.5, "high": 6.0, "source": "Gestión de Restaurantes (análisis nacional)", "source_url": "https://gestionderestaurantes.es/cuanto-cuesta-realmente-una-copa-de-vino-en-un-bar/", "note": "Derivado de rango nacional de bar común (2-5) y de vinos (5-12); ciudad media sin prima BCN. Estimación."},
+    {"item": "gin-tonic / cóctel", "low": 6.0, "typical": 8.0, "high": 12.0, "source": "derivado de rangos Barcelona (Time Out / Crónica Global)", "source_url": "https://www.timeout.es/barcelona/es/bars-pubs/copas-low-cost", "note": "Sin dato específico Tarragona: derivado de BCN con descuento de ciudad media. Estimación."},
+    {"item": "refresco (33cl)", "low": 2.0, "typical": 2.2, "high": 2.5, "source": "Numbeo Tarragona (jun 2026)", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Dato directo (media 2,20), muestra pequeña."},
+    {"item": "café (con leche / cappuccino)", "low": 1.4, "typical": 1.9, "high": 3.0, "source": "Numbeo Tarragona + Hosteltur (media España 1,47)", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Cappuccino media 2,32 (1,40-3,00); café con leche de bar corriente más cerca de 1,50-1,80."},
+    {"item": "menú del día", "low": 12.0, "typical": 14.5, "high": 18.0, "source": "Hostelería de España/Edenred 2025 — media Cataluña 15,4", "source_url": "https://www.infohoreca.com/noticias/20251125/precio-menu-dia-subida-14-euros-rentabilidad-restaurantes", "note": "Derivado de la media autonómica de Cataluña (15,4), que BCN empuja al alza; Tarragona ciudad estimada algo por debajo. No hay dato provincial publicado."},
+    {"item": "hamburguesa (completa, gourmet)", "low": 9.0, "typical": 12.0, "high": 16.0, "source": "InfoHoreca (mercado hamburguesa 2025, nacional)", "source_url": "https://www.infohoreca.com/noticias/20250528/mercado-hamburguesa-saturacion", "note": "Derivado del ticket medio nacional de hamburguesería (12-18) sin prima de gran ciudad. Estimación."},
+    {"item": "pizza", "low": 8.0, "typical": 11.0, "high": 15.0, "source": "derivado de rangos BCN y nacionales", "source_url": "https://www.timeout.es/barcelona/es/restaurantes/las-mejores-pizzerias-de-barcelona", "note": "Sin dato específico Tarragona: BCN 10-15 típico menos 1-2 EUR. Estimación."},
+    {"item": "pasta", "low": 8.0, "typical": 11.0, "high": 15.0, "source": "derivado (italianos de ciudad media)", "source_url": "https://www.thefork.es/restaurantes/tarragona-c541954", "note": "Derivado; TheFork Tarragona sitúa el precio medio de locales populares en 16-18 EUR pp, coherente con pasta 8-15."},
+    {"item": "tapa / ración media", "low": 4.0, "typical": 6.0, "high": 9.0, "source": "Loomis Pay (PVP tapas nacional)", "source_url": "https://es.loomispay.com/blog/tapas-que-triunfan-en-bares-espana", "note": "Derivado de media provincial/nacional (bravas 4-6,50). Estimación."},
+    {"item": "entrante medio", "low": 5.0, "typical": 8.0, "high": 12.0, "source": "derivado de Numbeo Tarragona (comida 2 pers. gama media 50)", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Derivado por composición de ticket (25 EUR pp gama media). Estimación."},
+    {"item": "plato principal carne", "low": 10.0, "typical": 15.0, "high": 22.0, "source": "Numbeo Tarragona + TheFork Tarragona (precio medio 16-18)", "source_url": "https://www.thefork.es/restaurantes/tarragona-c541954", "note": "Derivado: ticket gama media 25 pp (Numbeo) y precio medio TheFork 16-18 en locales populares. Estimación."},
+    {"item": "plato principal pescado", "low": 12.0, "typical": 17.0, "high": 25.0, "source": "derivado de Numbeo Tarragona (gama media)", "source_url": "https://www.numbeo.com/cost-of-living/in/Tarragona", "note": "Derivado con prima del pescado sobre carne; el Serrallo (barrio marinero) al alto. Estimación."},
+    {"item": "arroz / paella (por persona)", "low": 14.0, "typical": 18.0, "high": 25.0, "source": "derivado de cartas costa catalana (Mana75/Bodega Joan BCN)", "source_url": "https://mana75.es/blog/paellas-barcelona-tripadvisor/", "note": "Derivado del rango BCN/costa (15-30) sin la punta turística. Estimación."},
+    {"item": "postre", "low": 3.5, "typical": 5.0, "high": 7.0, "source": "derivado de composición de ticket medio", "source_url": "https://restauracionnews.com/2026/01/thefork-reservas-online/", "note": "Derivado. Sin fuente directa de postres. Estimación."}
+  ],
+  "sources": [
+    {"name": "Numbeo — Cost of Living Tarragona (17 contribuyentes, muestra pequeña)", "url": "https://www.numbeo.com/cost-of-living/in/Tarragona"},
+    {"name": "Hostelería de España + Edenred, menú del día 2025 (vía InfoHoreca)", "url": "https://www.infohoreca.com/noticias/20251125/precio-menu-dia-subida-14-euros-rentabilidad-restaurantes"},
+    {"name": "RRHH Press — menú del día 2025 por CCAA", "url": "https://www.rrhhpress.com/tendencias/62629-menu-dia-espana-2025-precio-medio"},
+    {"name": "TheFork — restaurantes Tarragona (precios medios por local)", "url": "https://www.thefork.es/restaurantes/tarragona-c541954"},
+    {"name": "TheFork/Restauración News — ticket medio España 2025", "url": "https://restauracionnews.com/2026/01/thefork-reservas-online/"},
+    {"name": "Hosteltur — café medio en bares de España", "url": "https://www.hosteltur.com/comunidad/nota/018944_tomarse-un-cafe-cuesta-de-media-147-euros-en-los-bares-espanoles.html"},
+    {"name": "Gestión de Restaurantes — precio copa de vino", "url": "https://gestionderestaurantes.es/cuanto-cuesta-realmente-una-copa-de-vino-en-un-bar/"},
+    {"name": "InfoHoreca — mercado de la hamburguesa 2025", "url": "https://www.infohoreca.com/noticias/20250528/mercado-hamburguesa-saturacion"},
+    {"name": "Loomis Pay — PVP tapas España", "url": "https://es.loomispay.com/blog/tapas-que-triunfan-en-bares-espana"},
+    {"name": "Mana75 — paellas recomendadas (cartas con precios)", "url": "https://mana75.es/blog/paellas-barcelona-tripadvisor/"}
+  ]
+}

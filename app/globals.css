@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+/*
+ * Gueridon design tokens — "a bound menu".
+ * Cover: hunter green leather with gilt foil. Paper: ivory with green-black ink.
+ * Display: Marcellus (inscriptional roman). Body: EB Garamond. Data: IBM Plex Mono.
+ */
+@theme {
+  --color-ink: #1c241b;
+  --color-ink-soft: #45503f;
+  --color-paper: #f5f1e6;
+  --color-paper-deep: #ebe5d4;
+  --color-cover: #24372b;
+  --color-cover-deep: #1a2a20;
+  --color-gilt: #b28d42;
+  --color-gilt-bright: #d6b671;
+  --color-claret: #7c2733;
+  --color-herb: #46704f;
+
+  --font-display: var(--font-marcellus), serif;
+  --font-serif: var(--font-garamond), Georgia, serif;
+  --font-mono: var(--font-plex-mono), monospace;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.65;
+  font-feature-settings: "onum" 1, "liga" 1; /* oldstyle figures, like a set menu */
+}
+
+/* ---------- typographic furniture ---------- */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.smallcaps {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.08em;
+}
+
+.lining {
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
+.dropcap::first-letter {
+  font-family: var(--font-display);
+  float: left;
+  font-size: 3.3em;
+  line-height: 0.82;
+  padding-right: 0.12em;
+  padding-top: 0.05em;
+  color: var(--color-cover);
+}
+
+/* The signature device: menu dot leaders. */
+.menuline {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.menuline > .dots {
+  flex: 1 1 2rem;
+  min-width: 2rem;
+  border-bottom: 2px dotted currentColor;
+  opacity: 0.38;
+  transform: translateY(-0.3em);
+}
+
+/* Double gilt rule, as on a leather cover. */
+.rule-double {
+  border-top: 1px solid var(--color-gilt);
+  position: relative;
+}
+.rule-double::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 3px;
+  border-top: 1px solid var(--color-gilt);
+  opacity: 0.55;
+}
+
+.cover-frame {
+  border: 1px solid color-mix(in srgb, var(--color-gilt) 75%, transparent);
+  outline: 1px solid color-mix(in srgb, var(--color-gilt) 35%, transparent);
+  outline-offset: 5px;
+}
+
+/* Subtle vignette so the cover reads as material, not flat fill. */
+.cover-bg {
+  background:
+    radial-gradient(120% 90% at 50% 8%, color-mix(in srgb, var(--color-gilt) 7%, transparent), transparent 60%),
+    radial-gradient(140% 120% at 50% 110%, var(--color-cover-deep), transparent 55%),
+    var(--color-cover);
+}
+
+/* ---------- motion ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gilt);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-gilt) 35%, transparent);
+}
+
+/* ---------- print (report & redesigned carta) ---------- */
+
+@media print {
+  body {
+    background: #fff;
+    font-size: 10.5pt;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-page {
+    break-after: page;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}

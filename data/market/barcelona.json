@@ -1,0 +1,39 @@
+{
+  "zone": "Barcelona ciudad",
+  "currency": "EUR",
+  "as_of": "2026-07",
+  "disclaimer": "Estimates aggregated from public sources; not a survey. For directional benchmarking only.",
+  "categories": [
+    {"item": "caña de cerveza (200-250ml)", "low": 2.0, "typical": 2.8, "high": 4.0, "source": "El Español (Cocinillas) 2025 + Numbeo Barcelona", "source_url": "https://www.elespanol.com/cocinillas/actualidad-gastronomica/20251113/fernando-martin-chef-precio-cerveza-eur-incluir-sueldos-seguro-social-alquiler-luz/1003744010791_0.html", "note": "Rango nacional caña 2,50-4,00 EUR (2025); en BCN centro/turístico se va al alto. Estimación."},
+    {"item": "pinta / cerveza 0,5L de barril", "low": 2.7, "typical": 3.5, "high": 6.0, "source": "Numbeo Barcelona (jul 2026, 292 contribuyentes)", "source_url": "https://www.numbeo.com/cost-of-living/in/Barcelona", "note": "Dato crowdsourced directo (media 3,50; rango 2,70-6,00). Zonas muy turísticas superan el alto."},
+    {"item": "copa de vino", "low": 3.0, "typical": 4.5, "high": 8.0, "source": "Gestión de Restaurantes (análisis nacional)", "source_url": "https://gestionderestaurantes.es/cuanto-cuesta-realmente-una-copa-de-vino-en-un-bar/", "note": "Derivado de rangos nacionales (bar común 2-5; especializado 5-12) con prima BCN. Sin dato específico BCN."},
+    {"item": "gin-tonic / cóctel", "low": 6.0, "typical": 10.0, "high": 14.0, "source": "Time Out Barcelona + Crónica Global (terrazas 8,50-13,50)", "source_url": "https://www.timeout.es/barcelona/es/bars-pubs/copas-low-cost", "note": "Low-cost ~6; gintonerías/terrazas 8,50-13,50 (dato 2019, ajustado al alza); coctelerías de autor superan 14."},
+    {"item": "refresco (33cl)", "low": 2.0, "typical": 2.4, "high": 3.0, "source": "Numbeo Barcelona (jul 2026)", "source_url": "https://www.numbeo.com/cost-of-living/in/Barcelona", "note": "Dato directo (media 2,44)."},
+    {"item": "café (con leche / cappuccino)", "low": 1.6, "typical": 2.3, "high": 4.0, "source": "Numbeo Barcelona + Hosteltur (media España 1,47)", "source_url": "https://www.numbeo.com/cost-of-living/in/Barcelona", "note": "Cappuccino BCN media 2,74 (1,80-4,00); café con leche algo menos (~2,31 según comparativas Numbeo citadas por prensa). Media nacional de bar 1,47 = suelo."},
+    {"item": "menú del día", "low": 12.0, "typical": 15.5, "high": 20.0, "source": "Hostelería de España/Edenred 2025 (Cataluña 15,4) + Numbeo BCN", "source_url": "https://www.infohoreca.com/noticias/20251125/precio-menu-dia-subida-14-euros-rentabilidad-restaurantes", "note": "Media Cataluña 15,4 EUR (2025); comida en restaurante barato BCN media 16 (12-25) según Numbeo. Cataluña = 2ª-3ª CCAA más cara."},
+    {"item": "hamburguesa (completa, gourmet)", "low": 10.0, "typical": 14.0, "high": 18.0, "source": "InfoHoreca (mercado hamburguesa 2025)", "source_url": "https://www.infohoreca.com/noticias/20250528/mercado-hamburguesa-saturacion", "note": "Derivado de datos nacionales: media >9 EUR unidad, ticket medio hamburguesería 12-18; BCN por encima de media nacional."},
+    {"item": "pizza", "low": 8.0, "typical": 12.0, "high": 18.0, "source": "Prensa local BCN (El Nacional / Metrópoli / Time Out)", "source_url": "https://www.elnacional.cat/es/gourmeteria/restaurantes/autentica-pizza-napolitana-menos-10-euros-este-nuevo-restaurante-barcelona_1641388_102.html", "note": "Napolitana clásica 10-12; premium 15,90-18; barrio/fast <8. Dato de artículos de pizzerías concretas, no censo."},
+    {"item": "pasta", "low": 9.0, "typical": 13.0, "high": 17.0, "source": "derivado de cartas de italianos BCN (misma prensa que pizza)", "source_url": "https://www.timeout.es/barcelona/es/restaurantes/las-mejores-pizzerias-de-barcelona", "note": "Derivado: los italianos BCN mueven pasta en rango similar o +1-2 EUR sobre pizza. Estimación indirecta."},
+    {"item": "tapa / ración media", "low": 4.0, "typical": 7.0, "high": 12.0, "source": "Loomis Pay (PVP tapas) + comparativas bravas prensa", "source_url": "https://es.loomispay.com/blog/tapas-que-triunfan-en-bares-espana", "note": "Derivado de rangos nacionales (bravas 4-6,50; raciones 3-7 en tabernas medias) con prima BCN centro."},
+    {"item": "entrante medio", "low": 6.0, "typical": 9.0, "high": 14.0, "source": "derivado de ticket medio (Numbeo comida 2 pers. 57,50 + TheFork 27)", "source_url": "https://restauracionnews.com/2026/01/thefork-reservas-online/", "note": "Derivado por composición de ticket (entrante ~30% del gasto pp en restaurante medio). Estimación."},
+    {"item": "plato principal carne", "low": 12.0, "typical": 18.0, "high": 26.0, "source": "derivado de Numbeo BCN (comida 2 pers. gama media 40-90)", "source_url": "https://www.numbeo.com/cost-of-living/in/Barcelona", "note": "Derivado: ~29 EUR pp de ticket medio en gama media, principal = 55-65% del gasto. Estimación."},
+    {"item": "plato principal pescado", "low": 14.0, "typical": 20.0, "high": 28.0, "source": "derivado de Numbeo BCN (comida 2 pers. gama media)", "source_url": "https://www.numbeo.com/cost-of-living/in/Barcelona", "note": "Derivado con prima habitual del pescado sobre carne (~10-15%). Estimación."},
+    {"item": "arroz / paella (por persona)", "low": 15.0, "typical": 20.0, "high": 30.0, "source": "Mana75 / Bodega Joan (cartas reales BCN 2025-26)", "source_url": "https://www.bodegajoan.com/en/blog/mejor-paella-barcelona", "note": "Cartas publicadas: 15-25,50 pp habitual; frente marítimo turístico hasta 38 (Xiringuito Escribà)."},
+    {"item": "postre", "low": 4.0, "typical": 6.0, "high": 9.0, "source": "derivado de composición de ticket medio BCN", "source_url": "https://restauracionnews.com/2026/01/thefork-reservas-online/", "note": "Derivado (~15-20% del gasto pp). Sin fuente directa de postres. Estimación."}
+  ],
+  "sources": [
+    {"name": "Hostelería de España + Edenred, menú del día 2025 (vía InfoHoreca)", "url": "https://www.infohoreca.com/noticias/20251125/precio-menu-dia-subida-14-euros-rentabilidad-restaurantes"},
+    {"name": "RRHH Press — menú del día 2025 por CCAA", "url": "https://www.rrhhpress.com/tendencias/62629-menu-dia-espana-2025-precio-medio"},
+    {"name": "Numbeo — Cost of Living Barcelona", "url": "https://www.numbeo.com/cost-of-living/in/Barcelona"},
+    {"name": "TheFork/Restauración News — ticket medio España 2025 (27 EUR)", "url": "https://restauracionnews.com/2026/01/thefork-reservas-online/"},
+    {"name": "Hosteltur — café medio en bares de España (1,47 EUR)", "url": "https://www.hosteltur.com/comunidad/nota/018944_tomarse-un-cafe-cuesta-de-media-147-euros-en-los-bares-espanoles.html"},
+    {"name": "El Español (Cocinillas) — precio de la cerveza 2025", "url": "https://www.elespanol.com/cocinillas/actualidad-gastronomica/20251113/fernando-martin-chef-precio-cerveza-eur-incluir-sueldos-seguro-social-alquiler-luz/1003744010791_0.html"},
+    {"name": "Time Out Barcelona — copas low cost", "url": "https://www.timeout.es/barcelona/es/bars-pubs/copas-low-cost"},
+    {"name": "Crónica Global — gintonerías con terraza (8,50-13,50; dato 2019)", "url": "https://cronicaglobal.elespanol.com/vida/20190729/las-mejores-gintonerias-con-terraza-de-barcelona/417458337_0.html"},
+    {"name": "InfoHoreca — mercado de la hamburguesa 2025", "url": "https://www.infohoreca.com/noticias/20250528/mercado-hamburguesa-saturacion"},
+    {"name": "Gestión de Restaurantes — precio copa de vino", "url": "https://gestionderestaurantes.es/cuanto-cuesta-realmente-una-copa-de-vino-en-un-bar/"},
+    {"name": "Loomis Pay — PVP tapas España", "url": "https://es.loomispay.com/blog/tapas-que-triunfan-en-bares-espana"},
+    {"name": "Bodega Joan / Mana75 — precios de paella BCN", "url": "https://www.bodegajoan.com/en/blog/mejor-paella-barcelona"},
+    {"name": "El Nacional — pizza napolitana BCN", "url": "https://www.elnacional.cat/es/gourmeteria/restaurantes/autentica-pizza-napolitana-menos-10-euros-este-nuevo-restaurante-barcelona_1641388_102.html"}
+  ]
+}

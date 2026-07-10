@@ -1,0 +1,18 @@
+{
+  "comment": "Hand-authored copy rewrites for the precomputed demo, written at build time against the real printed descriptions. Rule: reframe only what the menu already states — never invent ingredients.",
+  "rewrites": {
+    "Traditional Fish & Chips": "Crisp, golden beer-battered cod over proper chips with mushy peas — the Dockside classic.",
+    "Teriyaki Salmon": "Teriyaki-glazed salmon resting on stir-fried vegetables, with steamed rice.",
+    "Homemade Steak and Guinness Pie": "Chunky beef slow-simmered in rich Guinness gravy under a crisp pastry lid, with mash and veg.",
+    "Smash Burger": "Crisp-edged smash patty with melted cheese, bacon and BBQ sauce, lettuce and tomato — chips included.",
+    "Fillet Steak": "Our most tender cut from the grill, with chips, salad and homemade peppercorn sauce.",
+    "Espresso Martini": "Espresso shaken ice-cold with vodka and coffee liqueur.",
+    "Giant Rack of Sticky Ribs": "A giant rack glazed in our homemade BBQ sauce, with chips and salad — bring napkins.",
+    "Homemade Lasagna": "Layers of fresh ground beef, creamy cheese sauce and pasta sheets, served with chips."
+  },
+  "structureNotes": [
+    "soft-drinks-17-items-choice-overload",
+    "grill-contains-note-line-not-a-dish",
+    "single-item-sections:Milkshakes"
+  ]
+}
