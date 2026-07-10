@@ -28,12 +28,24 @@ menu redesign with print), demo'd on the real Waterfront printed menus.
 | vitest | 36/36 green (engine + pipeline E2E in fixture mode) |
 | ESLint / build | clean |
 | Playwright E2E | 4/4 — demo flow, ES locale, deep-scroll paint, mobile 360px no-overflow |
-| Lighthouse mobile (localhost) | **Perf 87 · A11y 100 · BP 100 · SEO 100** (gates 85/95) |
+| Lighthouse mobile (localhost) | Perf 87 · A11y 100 (gates 85/95) |
+| Lighthouse mobile (**production**) | **Perf 89 · A11y 100 · BP 100 · SEO 100 · CLS 0** |
+| E2E against production URL | 4/4 green |
 | CRO pass (optimitzador-conversio rubric) | Home ~90, Analyzer ~89 after fixes (✦ house-recommendation CTA on cover, risk micro-copy at CTA band, demo as primary button, widget→analyzer link) |
 
 Bugs the tests caught during the night (all fixed): sub-1€ prices could snap negative;
 missing engine re-export silently `undefined` at runtime; two-line menu items unparsed;
 `runDemo` without error handling could hang on a stale chunk.
+
+## Publication note
+
+The `gh` OAuth token lacks the `workflow` scope, so a push containing
+`.github/workflows/ci.yml` was rejected by GitHub. Resolution without rewriting
+anything published: the full 6-commit build narrative lives on local branch
+`dev-night`; `main` (pushed) is a single clean release commit without `.github`.
+**Morning step:** `gh auth refresh -h github.com -s workflow` (interactive, 1 min),
+then `git add .github && git commit -m "ci: lint + test + build on push" && git push`
+— CI goes live as a normal commit.
 
 ## Known debt (honest)
 
@@ -53,6 +65,7 @@ missing engine re-export silently `undefined` at runtime; two-line menu items un
 
 - [ ] **Set a spend limit on the Anthropic console** (console.anthropic.com) — the hard cap.
 - [ ] Review the live site + repo (tone, PII, errors): https://gueridon.vercel.app
+- [ ] `gh auth refresh -h github.com -s workflow` → commit + push `.github/` (CI on).
 - [ ] Optional: `vercel env add ANTHROPIC_API_KEY` + redeploy → live photo analysis on.
 - [ ] Optional: `vercel env add GUERIDON_RL_SECRET` (any long random string).
 - [ ] Decide on a custom domain (now on gueridon.vercel.app).
