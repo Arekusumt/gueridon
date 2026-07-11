@@ -1,7 +1,7 @@
 # Gueridon — the science of the menu, served properly
 
 [![CI](https://github.com/Arekusumt/gueridon/actions/workflows/ci.yml/badge.svg)](https://github.com/Arekusumt/gueridon/actions/workflows/ci.yml)
-[![Tests](https://img.shields.io/badge/tests-38%20passing-2ea44f)](tests)
+[![Tests](https://img.shields.io/badge/tests-46%20passing-2ea44f)](tests)
 [![Lighthouse](https://img.shields.io/badge/lighthouse%20(mobile%2C%20prod)-89%20%C2%B7%20100%20%C2%B7%20100%20%C2%B7%20100-5c62d6)](lighthouse-prod.json)
 [![Live demo](https://img.shields.io/badge/live-gueridon.vercel.app-0a7ea4)](https://gueridon.vercel.app)
 [![License](https://img.shields.io/badge/license-source--available-lightgrey)](LICENSE)
@@ -11,7 +11,9 @@
 A long-form, luxury-typography explainer of **menu engineering** — every claim backed by
 verified research — with a working **menu analyzer** built in: upload a carta, get the
 Kasavana–Smith matrix, rule-based price moves, copy doctoring, legal compliance checks,
-a what-if simulator and a print-ready redesigned menu.
+a what-if simulator and a print-ready redesigned menu. Drop in a **sales CSV from your
+POS** (units sold + food cost per dish, seasons/periods supported) — or type the numbers
+into the post-run table — and the matrix flips from estimated priors to **measured mode**.
 
 | The cover | The analyzer | The redesign |
 |---|---|---|
@@ -85,7 +87,7 @@ rather than a paper (Omnes), it is labelled as such. The full bibliography rende
 npm install
 npm run dev        # http://localhost:3000/en
 
-npm test           # vitest — engine + pipeline (38 tests)
+npm test           # vitest — engine + pipeline (46 tests)
 npm run e2e        # Playwright smoke: demo flow, i18n, mobile, paint checks
 ```
 
@@ -102,7 +104,9 @@ IBM Plex Mono; the dot-leader is the house signature.
 ## Honest limitations
 
 - Without your sales/cost data the matrix runs in **estimated mode** on documented
-  priors — directional, clearly labelled, never presented as your books.
+  priors — directional, clearly labelled, never presented as your books. Real numbers
+  (sales CSV with optional periods, or the post-run table) switch it to measured mode;
+  CSV rows are matched to menu items by dish name.
 - Market benchmarks are aggregated from cited public sources (dataset in
   [`data/market/`](data/market/)) — for directional benchmarking only.
 - The what-if simulator is a constant-elasticity scenario tool, not a forecast.

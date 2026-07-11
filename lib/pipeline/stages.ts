@@ -33,6 +33,7 @@ import {
 } from "./schemas";
 import type { AnalyzeInput, DoctorResult } from "./types";
 import { round2 } from "@/lib/engine/utils";
+import { slugifyName } from "@/lib/sales";
 
 // ---------------------------------------------------------------- parse ----
 
@@ -160,23 +161,21 @@ export function normalizeStage(parsed: ParsedMenu, input: AnalyzeInput): {
       skipped++;
       return;
     }
-    let id = `${p.category}-${p.name}`
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[̀-ͯ]/g, "")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "")
-      .slice(0, 60);
+    let id = slugifyName(`${p.category}-${p.name}`);
     if (!id || seen.has(id)) id = `${id || "item"}-${i}`;
     seen.add(id);
+    // Known numbers match by full id or by dish-name slug — the latter lets a
+    // sales CSV land without knowing generated ids. Two categories sharing a
+    // dish name would share the figures; per-category shares keep that honest.
+    const nameKey = slugifyName(p.name);
     items.push({
       id,
       name: p.name,
       category: p.category,
       description: p.description ?? null,
       price: p.price,
-      cost: input.knownCosts?.[id] ?? null,
-      unitsSold: input.knownSales?.[id] ?? null,
+      cost: input.knownCosts?.[id] ?? input.knownCosts?.[nameKey] ?? null,
+      unitsSold: input.knownSales?.[id] ?? input.knownSales?.[nameKey] ?? null,
     });
   });
 

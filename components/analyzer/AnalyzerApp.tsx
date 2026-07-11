@@ -1,9 +1,10 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { UI, type Locale } from "@/lib/i18n";
 import type { Positioning } from "@/lib/engine";
 import type { AnalysisResult, PipelineEvent, StageId } from "@/lib/pipeline/types";
+import { aggregateSales, parseSalesCsv, type SalesRow } from "@/lib/sales";
 import { Dashboard } from "./Dashboard";
 
 const STAGES: StageId[] = [
@@ -24,6 +25,10 @@ type UploadMediaType = "image/jpeg" | "image/png" | "image/webp" | "application/
 const ACCEPTED_UPLOAD = /^(image\/(jpeg|png|webp)|application\/pdf)$/;
 const TEXT_FILE = /\.(txt|md|csv)$/i;
 const FILE_INPUT_ACCEPT = "image/jpeg,image/png,image/webp,application/pdf,.txt,.md,.csv,text/plain";
+const SALES_INPUT_ACCEPT = ".csv,.tsv,.txt,text/csv,text/tab-separated-values,text/plain";
+
+/** Real numbers keyed by item id / dish-name slug, from CSV or the refine table. */
+export type KnownNumbers = { sales: Record<string, number>; costs: Record<string, number> };
 
 async function filesToDocuments(files: File[]) {
   const out: Array<{ data: string; mediaType: UploadMediaType }> = [];
@@ -69,6 +74,10 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
   const [byoKey, setByoKey] = useState("");
   const [files, setFiles] = useState<File[]>([]);
   const [compFiles, setCompFiles] = useState<File[]>([]);
+  const [salesRows, setSalesRows] = useState<SalesRow[]>([]);
+  const [salesPeriods, setSalesPeriods] = useState<string[]>([]);
+  const [activePeriods, setActivePeriods] = useState<Set<string>>(new Set());
+  const [salesError, setSalesError] = useState<string | null>(null);
 
   const addMenuFiles = useCallback(async (incoming: FileList | File[] | null) => {
     const { media, texts } = splitFiles(incoming);
@@ -87,6 +96,36 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
       if (text) setCompetitors((prev) => (prev.trim() ? `${prev.trimEnd()}\n---\n${text}` : text));
     }
   }, []);
+
+  const addSalesFiles = useCallback(
+    async (incoming: FileList | File[] | null) => {
+      setSalesError(null);
+      for (const f of incoming ? Array.from(incoming) : []) {
+        if (ACCEPTED_UPLOAD.test(f.type)) continue; // photos carry no numbers
+        const parsed = parseSalesCsv(await f.text());
+        if (parsed.rows.length === 0) {
+          setSalesError(t.sales.invalid);
+          continue;
+        }
+        setSalesRows((prev) => [...prev, ...parsed.rows]);
+        setSalesPeriods((prev) => [...prev, ...parsed.periods.filter((p) => !prev.includes(p))]);
+        setActivePeriods((prev) => new Set([...prev, ...parsed.periods]));
+      }
+    },
+    [t.sales.invalid],
+  );
+
+  const clearSales = useCallback(() => {
+    setSalesRows([]);
+    setSalesPeriods([]);
+    setActivePeriods(new Set());
+    setSalesError(null);
+  }, []);
+
+  const salesAgg = useMemo(
+    () => (salesRows.length ? aggregateSales(salesRows, activePeriods) : null),
+    [salesRows, activePeriods],
+  );
 
   const errorText = useCallback(
     (code: string) => {
@@ -124,7 +163,7 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
     }
   }, [locale, t.empty]);
 
-  const run = useCallback(async () => {
+  const run = useCallback(async (refine?: KnownNumbers) => {
     setPhase("running");
     setError(null);
     setEvents([]);
@@ -132,6 +171,9 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
     try {
       const images = await filesToDocuments(files);
       const compImages = await filesToDocuments(compFiles);
+      // CSV first, refine-table entries on top — what the user typed wins.
+      const knownSales = { ...(salesAgg?.sales ?? {}), ...(refine?.sales ?? {}) };
+      const knownCosts = { ...(salesAgg?.costs ?? {}), ...(refine?.costs ?? {}) };
       const body = {
         profile: {
           name: name || "—",
@@ -148,6 +190,8 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
           ? competitors.split(/^---+$/m).map((s) => s.trim()).filter(Boolean).slice(0, 5)
           : undefined,
         competitorImages: compImages.length ? compImages : undefined,
+        knownSales: Object.keys(knownSales).length ? knownSales : undefined,
+        knownCosts: Object.keys(knownCosts).length ? knownCosts : undefined,
       };
       const res = await fetch("/api/analyze", {
         method: "POST",
@@ -188,7 +232,7 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
       setError(errorText(e instanceof Error ? e.message : "PIPELINE_ERROR"));
       setPhase("form");
     }
-  }, [byoKey, catalonia, compFiles, competitors, cuisine, errorText, files, locale, location, menuText, name, positioning, zone]);
+  }, [byoKey, catalonia, compFiles, competitors, cuisine, errorText, files, locale, location, menuText, name, positioning, salesAgg, zone]);
 
   const canRun = menuText.trim().length > 0 || files.length > 0;
 
@@ -196,7 +240,13 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
     return (
       <div>
         <StageRail t={t} events={events} compact />
-        <Dashboard locale={locale} result={result} onReset={() => { setPhase("form"); setResult(null); setEvents([]); }} />
+        <Dashboard
+          locale={locale}
+          result={result}
+          onReset={() => { setPhase("form"); setResult(null); setEvents([]); }}
+          // Demo replays have no original input to re-fire with.
+          onRefine={result.meta.mode === "demo" ? undefined : (known) => run(known)}
+        />
       </div>
     );
   }
@@ -229,6 +279,74 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
           onAdd={addMenuFiles}
           onClear={() => setFiles([])}
         />
+        {/* — The books: real units sold & food cost, straight from the POS — */}
+        <div className="mt-8">
+          <h3 className="eyebrow text-gilt mb-1">{t.sales.title}</h3>
+          <Dropzone
+            compact
+            title={t.sales.uploadTitle}
+            hint={t.sales.uploadHint}
+            selectedLabel=""
+            clearLabel=""
+            accept={SALES_INPUT_ACCEPT}
+            files={[]}
+            onAdd={addSalesFiles}
+            onClear={clearSales}
+          />
+          {salesError ? (
+            <p className="text-claret text-sm mt-2" role="alert">{salesError}</p>
+          ) : null}
+          {salesRows.length > 0 ? (
+            <div className="mt-3">
+              <p className="font-mono text-[0.62rem] uppercase tracking-wider text-ink-soft">
+                {salesRows.length} {t.sales.rowsLabel} · {salesAgg?.dishes ?? 0} {t.sales.dishesLabel}
+                <button
+                  type="button"
+                  onClick={clearSales}
+                  className="font-mono text-[0.62rem] uppercase tracking-wider text-claret hover:underline ml-3"
+                >
+                  × {t.sales.clear}
+                </button>
+              </p>
+              {salesPeriods.length > 0 ? (
+                <div className="mt-3">
+                  <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ink-soft mb-1.5">
+                    {t.sales.periods}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {salesPeriods.map((p) => {
+                      const active = activePeriods.has(p);
+                      return (
+                        <button
+                          key={p}
+                          type="button"
+                          aria-pressed={active}
+                          onClick={() =>
+                            setActivePeriods((prev) => {
+                              const next = new Set(prev);
+                              if (next.has(p)) next.delete(p);
+                              else next.add(p);
+                              return next;
+                            })
+                          }
+                          className={`font-mono text-[0.62rem] uppercase tracking-wider border px-2.5 py-1 transition-colors ${
+                            active
+                              ? "border-cover bg-cover text-paper"
+                              : "border-ink/25 text-ink-soft hover:border-cover"
+                          }`}
+                        >
+                          {p}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : null}
+              <p className="text-xs text-ink-soft mt-2 max-w-sm">{t.sales.note}</p>
+            </div>
+          ) : null}
+        </div>
+
         <div className="mt-6 border-t border-ink/15 pt-5">
           <button
             onClick={runDemo}
@@ -318,7 +436,7 @@ export function AnalyzerApp({ locale }: { locale: Locale }) {
           </label>
           {error ? <p className="text-claret text-sm mb-3" role="alert">{error}</p> : null}
           <button
-            onClick={run}
+            onClick={() => run()}
             disabled={!canRun}
             className="w-full bg-cover text-paper font-mono text-xs tracking-[0.25em] uppercase px-6 py-4 hover:bg-cover-deep transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
@@ -340,6 +458,7 @@ function Dropzone({
   onAdd,
   onClear,
   compact = false,
+  accept = FILE_INPUT_ACCEPT,
 }: {
   title: string;
   hint: string;
@@ -349,6 +468,7 @@ function Dropzone({
   onAdd: (incoming: FileList | File[] | null) => void;
   onClear: () => void;
   compact?: boolean;
+  accept?: string;
 }) {
   const ref = useRef<HTMLInputElement>(null);
   return (
@@ -381,7 +501,7 @@ function Dropzone({
         <input
           ref={ref}
           type="file"
-          accept={FILE_INPUT_ACCEPT}
+          accept={accept}
           multiple
           className="sr-only"
           onChange={(e) => {

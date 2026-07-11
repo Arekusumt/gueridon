@@ -54,8 +54,9 @@ then `git add .github && git commit -m "ci: lint + test + build on push" && git 
   path: Upstash/KV global counter (comment in `lib/pipeline/ratelimit.ts`).
 - "Keep my menu's look" redesign branding (vision-extracted palette) is stubbed pending
   live mode; the four house styles work.
-- Per-item real cost/sales entry has engine + API support but no UI yet (`knownCosts`/
-  `knownSales`).
+- ~~Per-item real cost/sales entry has engine + API support but no UI yet~~ Done
+  2026-07-11: sales-CSV dropzone with period/season picker (`lib/sales.ts`) + post-run
+  refine table (`RefineTable.tsx`); rows match menu items by dish-name slug.
 - LCP ~3.7s on throttled mobile is the Marcellus swap on the hero; acceptable, could
   subset further.
 - Demo matrix runs in estimated mode → classifications cluster toward stars/plowhorses;

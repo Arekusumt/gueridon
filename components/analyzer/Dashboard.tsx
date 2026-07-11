@@ -5,8 +5,10 @@ import { InfoDot } from "@/components/InfoDot";
 import { MenuLine } from "@/components/MenuLine";
 import { UI, type Locale } from "@/lib/i18n";
 import type { AnalysisResult } from "@/lib/pipeline/types";
+import type { KnownNumbers } from "./AnalyzerApp";
 import { MatrixPlot } from "./MatrixPlot";
 import { RedesignCarta } from "./RedesignCarta";
+import { RefineTable } from "./RefineTable";
 import { Simulator } from "./Simulator";
 
 function fill(template: string, params?: Record<string, string | number>) {
@@ -17,10 +19,13 @@ export function Dashboard({
   locale,
   result,
   onReset,
+  onRefine,
 }: {
   locale: Locale;
   result: AnalysisResult;
   onReset: () => void;
+  /** Re-runs the analysis with real per-item numbers; absent on demo replays. */
+  onRefine?: (known: KnownNumbers) => void;
 }) {
   const t = UI[locale].analyzer;
   const [printCarta, setPrintCarta] = useState(false);
@@ -117,6 +122,24 @@ export function Dashboard({
           <p className="text-xs text-ink-soft mt-3 max-w-lg">{t.estCostNote}</p>
         ) : null}
       </section>
+
+      {/* — Your numbers: measured mode, one table away — */}
+      {onRefine ? (
+        <section className="mt-14 max-w-2xl no-print">
+          <h2 className="eyebrow text-gilt mb-2">{t.refine.title}</h2>
+          <p className="text-sm text-ink-soft mb-6">{t.refine.hint}</p>
+          <RefineTable
+            items={result.items}
+            labels={{
+              item: t.pricingCols.item,
+              units: t.refine.units,
+              cost: t.refine.cost,
+              apply: t.refine.apply,
+            }}
+            onApply={onRefine}
+          />
+        </section>
+      ) : null}
 
       {/* — Price moves — */}
       <section className="mt-14">

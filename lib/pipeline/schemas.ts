@@ -85,8 +85,15 @@ export const AnalyzeRequestSchema = z.object({
   images: z.array(UploadedFileSchema).max(4).optional(),
   competitorTexts: z.array(z.string().max(20_000)).max(5).optional(),
   competitorImages: z.array(UploadedFileSchema).max(4).optional(),
-  knownCosts: z.record(z.string(), z.number().positive().max(10_000)).optional(),
-  knownSales: z.record(z.string(), z.number().min(0).max(1_000_000)).optional(),
+  // Real numbers from the user's books, keyed by item id or dish-name slug.
+  knownCosts: z
+    .record(z.string().max(80), z.number().positive().max(10_000))
+    .refine((r) => Object.keys(r).length <= 1200, "too many entries")
+    .optional(),
+  knownSales: z
+    .record(z.string().max(80), z.number().min(0).max(1_000_000))
+    .refine((r) => Object.keys(r).length <= 1200, "too many entries")
+    .optional(),
 });
 
 /** Strip markdown fences and parse the first JSON object in an LLM reply. */
